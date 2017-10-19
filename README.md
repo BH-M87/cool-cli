@@ -1,2 +1,2 @@
-# simple-cli
-A simple cli, build for independent webpack config.
+# cool-cli
+A cool cli, build for independent webpack config.

@@ -1,18 +1,18 @@
 {
-  "name": "simple-cli",
-  "version": "0.0.1",
-  "description": "A simple cli, build for independent webpack config.",
+  "name": "cool-cli",
+  "version": "0.0.2",
+  "description": "A cool cli, build for independent webpack config.",
   "author": "RJAVA1990<liuxuheng1990@gmail.com>",
   "license": "GNU",
   "repository": {
     "type": "git",
-    "url": "git@github.com:RJAVA1990/simple-cli.git"
+    "url": "git@github.com:RJAVA1990/cool-cli.git"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "bin": {
-    "simple-cli": "bin/index.js"
+    "cool-cli": "bin/index.js"
   },
   "engines": {
     "node": ">=7"
