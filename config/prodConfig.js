@@ -11,7 +11,7 @@ module.exports = {
   bail: true,
   context: srcPath,
   devtool: false,
-  entry: `${srcPath}/index.js`,
+  entry: './index',
   externals: {},
   output: {
     path: buildPath,
@@ -37,7 +37,15 @@ module.exports = {
         {
           loader: 'babel-loader',
           options: {
-            presets: ['env'],
+            babelrc: false,
+            presets: [
+              [require.resolve('babel-preset-env'), { modules: false }],
+              require.resolve('babel-preset-react'),
+              require.resolve('babel-preset-stage-0'),
+            ],
+            plugins: [
+              require.resolve('babel-plugin-transform-decorators-legacy'),
+            ],
           },
         },
       ],

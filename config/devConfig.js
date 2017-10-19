@@ -9,7 +9,11 @@ const { srcPath, buildPath, nodeModulesPath } = require('./paths');
 module.exports = {
   context: srcPath,
   devtool: 'cheap-module-eval-source-map',
-  entry: `${srcPath}/index.js`,
+  entry: [
+    require.resolve('react-hot-loader/patch'),
+    require.resolve('react-dev-utils/webpackHotDevClient'),
+    './index',
+  ],
   externals: {},
   output: {
     path: buildPath,
@@ -31,7 +35,16 @@ module.exports = {
         {
           loader: 'babel-loader',
           options: {
-            presets: ['env', 'babel-preset-react', 'babel-preset-stage-0'],
+            babelrc: false,
+            presets: [
+              [require.resolve('babel-preset-env'), { modules: false }],
+              require.resolve('babel-preset-react'),
+              require.resolve('babel-preset-stage-0'),
+            ],
+            plugins: [
+              require.resolve('react-hot-loader/babel'),
+              require.resolve('babel-plugin-transform-decorators-legacy'),
+            ],
           },
         },
       ],
