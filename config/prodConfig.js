@@ -32,7 +32,6 @@ module.exports = {
     }),
     new HappyPack({
       id: 'js',
-      cache: true,
       threads: os.cpus().length,
       loaders: [
         {
@@ -45,7 +44,6 @@ module.exports = {
     }),
     new HappyPack({
       id: 'css',
-      cache: true,
       threads: os.cpus().length,
       loaders: [
         {
@@ -61,7 +59,6 @@ module.exports = {
     }),
     new HappyPack({
       id: 'scss',
-      cache: true,
       threads: os.cpus().length,
       loaders: [
         {

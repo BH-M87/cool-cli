@@ -37,7 +37,25 @@ function build() {
   });
 }
 
-// clear the build path first
-fs.emptyDirSync(buildPath);
+// clear the build path folder first
+const deleteFolder = path => {
+  let files = [];
+  if (fs.existsSync(path)) {
+    files = fs.readdirSync(path);
+    files.forEach(file => {
+      const curPath = path + '/' + file;
+      if (fs.statSync(curPath).isDirectory()) {
+        // recurse
+        deleteFolder(curPath);
+      } else {
+        // delete file
+        fs.unlinkSync(curPath);
+      }
+    });
+    fs.rmdirSync(path);
+  }
+};
+
+deleteFolder(buildPath);
 
 build();

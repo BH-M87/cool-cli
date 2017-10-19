@@ -26,20 +26,18 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HappyPack({
       id: 'js',
-      cache: true,
       threads: os.cpus().length,
       loaders: [
         {
           loader: 'babel-loader',
           options: {
-            presets: ['env']
+            presets: ['env', 'babel-preset-react', 'babel-preset-stage-0'],
           },
         },
       ],
     }),
     new HappyPack({
       id: 'css',
-      cache: true,
       threads: os.cpus().length,
       loaders: [
         {
@@ -61,7 +59,6 @@ module.exports = {
     }),
     new HappyPack({
       id: 'scss',
-      cache: true,
       threads: os.cpus().length,
       loaders: [
         {

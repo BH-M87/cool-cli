@@ -8,6 +8,9 @@ const webpackConfig = require('../config/devConfig');
 const { buildPath } = require('../config/paths');
 
 const devServerConfig = {
+  host: '127.0.0.1',
+  port: '8000',
+  proxy: {},
   compress: true,
   contentBase: buildPath,
   clientLogLevel: 'none',
@@ -54,7 +57,7 @@ function run() {
   const compiler = compile();
   const devServer = new WebpackDevServer(compiler, devServerConfig);
 
-  devServer.listen(devServerConfig.port, devServerConfig.port, err => {
+  devServer.listen(devServerConfig.port, devServerConfig.host, err => {
     if (err) {
       return console.log(chalk.red(err));
     }
