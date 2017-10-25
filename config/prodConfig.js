@@ -2,6 +2,7 @@
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
 const HappyPack = require('happypack');
 const os = require('os');
 const path = require('path');
@@ -92,6 +93,7 @@ module.exports = {
         },
       ],
     }),
+    new HtmlPlugin({ template: './index.html' }),
   ],
   module: {
     rules: [

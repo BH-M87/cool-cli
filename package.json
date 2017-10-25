@@ -18,6 +18,9 @@
     "node": ">=7"
   },
   "devDependencies": {
+    "@commitlint/cli": "^4.2.1",
+    "@commitlint/config-angular": "^4.2.1",
+    "commitizen": "^2.9.6",
     "eslint": "^3.19.0"
   },
   "dependencies": {
@@ -50,5 +53,10 @@
     "url-loader": "^0.5.8",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.6.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   }
 }
