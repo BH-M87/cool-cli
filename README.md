@@ -1,2 +1,19 @@
 # cool-cli
-A cool cli, build for independent webpack config.
+----
+## What?
+A cool cli, with independent webpack config, for building app in a simple way.
+
+## Why?
+We usually put our webpack configuration in our own project with popular project generator. After hundreds of projects, we config or update the webpack configuration hundreds of times. So I want to do it in a simple and cool way. Seperate all the webpack configutation out of the project, nothing to worry about webpack config anymore.
+
+## How?
+1. First, support `npm start` and `npm run build`. Used for dev and prod environment.
+2. Besides basic configuration, import `happypack` to improve building speed.
+3. Other optimization.
+
+## Todo:
+1. Support custom configuration to overwrite the default configuration.
+2. Mock data support.
+3. Bring in test framework.
+
+***Happy Coding!!!***
