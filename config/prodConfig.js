@@ -84,7 +84,7 @@ module.exports = {
         {
           loader: 'css-loader',
           query: {
-            modules: true,
+            modules: false,
             importLoaders: 1,
             // minimize: true, // There is not obvious change on file size after minimize.
             localIdentName: '[name]__[local]___[hash:base64:5]',
