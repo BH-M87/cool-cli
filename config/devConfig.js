@@ -2,6 +2,7 @@
 
 const webpack = require('webpack');
 const HappyPack = require('happypack');
+const HtmlPlugin = require('html-webpack-plugin');
 const os = require('os');
 const path = require('path');
 const { srcPath, buildPath, nodeModulesPath } = require('./paths');
@@ -99,6 +100,7 @@ module.exports = {
         },
       ],
     }),
+    new HtmlPlugin({ template: './index.html' }),
   ],
   module: {
     rules: [
