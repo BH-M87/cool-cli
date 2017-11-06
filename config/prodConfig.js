@@ -46,6 +46,17 @@ module.exports = {
             ],
             plugins: [
               require.resolve('babel-plugin-transform-decorators-legacy'),
+              [
+                require.resolve('babel-plugin-transform-runtime'),
+                {
+                  helpers: false,
+                  polyfill: false,
+                  regenerator: true,
+                  moduleName: path.dirname(
+                    require.resolve('babel-runtime/package')
+                  ),
+                },
+              ],
             ],
           },
         },
