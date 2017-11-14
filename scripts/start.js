@@ -4,6 +4,7 @@ const chalk = require('chalk');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
+const mock = require('../utils/mock');
 const webpackConfig = require('../config/devConfig');
 const { buildPath } = require('../config/paths');
 
@@ -56,6 +57,8 @@ function compile() {
 function run() {
   const compiler = compile();
   const devServer = new WebpackDevServer(compiler, devServerConfig);
+
+  mock(devServer);
 
   devServer.listen(devServerConfig.port, devServerConfig.host, err => {
     if (err) {

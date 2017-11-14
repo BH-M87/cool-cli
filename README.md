@@ -16,4 +16,31 @@ We usually put our webpack configuration in our own project with popular project
 2. Mock data support.
 3. Bring in test framework.
 
+## What's New?
+
+### v0.1.3
+**Mock Data**  
+Support mock data function. Now you can create a file `.mock.js` under root folder, and then config it as following:
+
+```
+export default {
+  // support Object and Array
+  'GET /api/users': { users: [1,2] },
+
+  // GET POST can be omited
+  '/api/users/1': { id: 1 },
+
+  // support function，API refs to express@4
+  'POST /api/users/create': (req, res) => { res.end('OK'); },
+
+  // Forward to another server
+  'GET /assets/*': 'https://assets.online/',
+
+  // Forward to another server with child path
+  // request /someDir/0.0.1/index.css will be proxy to https://xxx.com/page/home
+  // return https://xxx.com/page/home/0.0.1/index.css
+  'GET /someDir/(.*)': 'https://xxx.com/page/home',
+};
+```
+
 ***Happy Coding!!!***

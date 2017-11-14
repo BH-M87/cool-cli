@@ -4,14 +4,18 @@ const fs = require('fs');
 const path = require('path');
 
 const realPath = fs.realpathSync(process.cwd());
+const resolveApp = relativePath => path.resolve(realPath, relativePath);
+
 module.exports = {
+  realPath,
+  resolveApp,
   get buildPath() {
-    return path.resolve(realPath, 'build');
+    return resolveApp('build');
   },
   get srcPath() {
-    return path.resolve(realPath, 'src');
+    return resolveApp('src');
   },
   get nodeModulesPath() {
-    return path.resolve(realPath, 'node_modules');
-  },
+    return resolveApp('node_modules');
+  }
 };
