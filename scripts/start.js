@@ -6,28 +6,8 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const mock = require('../utils/mock');
 const webpackConfig = require('../config/devConfig');
-const { buildPath } = require('../config/paths');
 
-const devServerConfig = {
-  host: '127.0.0.1',
-  port: '8000',
-  proxy: {},
-  compress: true,
-  contentBase: buildPath,
-  clientLogLevel: 'none',
-  disableHostCheck: true,
-  hot: true,
-  historyApiFallback: true,
-  publicPath: '/',
-  stats: {
-    chunks: false,
-    colors: true,
-  },
-  watchContentBase: true,
-  watchOptions: {
-    ignored: /node_modules/,
-  },
-};
+const devServerConfig = webpackConfig.devServer;
 
 function compile() {
   let compiler;

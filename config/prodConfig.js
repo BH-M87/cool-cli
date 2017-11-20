@@ -6,9 +6,11 @@ const HtmlPlugin = require('html-webpack-plugin');
 const HappyPack = require('happypack');
 const os = require('os');
 const path = require('path');
+const _ = require('lodash');
 const { srcPath, buildPath, nodeModulesPath } = require('./paths');
+const { prodCustomConfig } = require('./customConfig');
 
-module.exports = {
+const prodDefaultConfig = {
   bail: true,
   context: srcPath,
   devtool: false,
@@ -158,3 +160,5 @@ module.exports = {
     modules: [path.resolve(__dirname, '..', 'node_modules')],
   },
 };
+
+module.exports = _.merge({}, prodDefaultConfig, prodCustomConfig);

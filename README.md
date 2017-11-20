@@ -18,6 +18,13 @@ We usually put our webpack configuration in our own project with popular project
 
 ## What's New?
 
+### v0.1.5
+**Custom Config**  
+Custom Config now support!!!
+Create a file named `.cool.dev.config.js` or  `.cool.prod.config.js` under root folder.
+The config in them will overwrite the default webpack config recursively.
+
+
 ### v0.1.3
 **Mock Data**  
 Support mock data function. Now you can create a file `.mock.js` under root folder, and then config it as following:

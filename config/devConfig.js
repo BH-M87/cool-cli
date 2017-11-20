@@ -5,9 +5,11 @@ const HappyPack = require('happypack');
 const HtmlPlugin = require('html-webpack-plugin');
 const os = require('os');
 const path = require('path');
+const _ = require('lodash');
 const { srcPath, buildPath, nodeModulesPath } = require('./paths');
+const { devCustomConfig } = require('./customConfig');
 
-module.exports = {
+const devDefaultConfig = {
   context: srcPath,
   devtool: 'cheap-module-eval-source-map',
   entry: [
@@ -158,4 +160,26 @@ module.exports = {
   resolveLoader: {
     modules: [path.resolve(__dirname, '..', 'node_modules')],
   },
+  devServer: {
+    host: '127.0.0.1',
+    port: '8000',
+    proxy: {},
+    compress: true,
+    contentBase: buildPath,
+    clientLogLevel: 'none',
+    disableHostCheck: true,
+    hot: true,
+    historyApiFallback: true,
+    publicPath: '/',
+    stats: {
+      chunks: false,
+      colors: true,
+    },
+    watchContentBase: true,
+    watchOptions: {
+      ignored: /node_modules/,
+    },
+  },
 };
+
+module.exports = _.merge({}, devDefaultConfig, devCustomConfig);
