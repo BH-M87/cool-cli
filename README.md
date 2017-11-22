@@ -18,7 +18,7 @@ We usually put our webpack configuration in our own project with popular project
 
 ## What's New?
 
-### v0.1.5
+### v0.1.6
 **Custom Config**  
 Custom Config now support!!!
 Create a file named `.cool.dev.config.js` or  `.cool.prod.config.js` under root folder.
