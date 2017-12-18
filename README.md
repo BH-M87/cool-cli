@@ -18,6 +18,9 @@ We usually put our webpack configuration in our own project with popular project
 
 ## What's New?
 
+### v0.1.8
+**LESS Support!!!**  
+
 ### v0.1.6
 **Custom Config**  
 Custom Config now support!!!

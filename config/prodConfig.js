@@ -80,7 +80,7 @@ const prodDefaultConfig = {
       ],
     }),
     new HappyPack({
-      id: 'scss',
+      id: 'sass',
       threads: os.cpus().length,
       loaders: [
         {
@@ -106,6 +106,35 @@ const prodDefaultConfig = {
         },
       ],
     }),
+    new HappyPack({
+      id: 'less',
+      threads: os.cpus().length,
+      loaders: [
+        {
+          loader: 'style-loader',
+        },
+        {
+          loader: 'css-loader',
+          options: {
+            modules: false,
+            importLoaders: 1,
+            localIdentName: '[name]__[local]___[hash:base64:5]',
+          },
+        },
+        {
+          loader: 'postcss-loader',
+          query: {
+            config: path.resolve(__dirname, '..', 'postcss.config.js'),
+          },
+        },
+        {
+          loader: 'less-loader',
+          options: {
+            sourceMap: true,
+          },
+        },
+      ],
+    }),
     new HtmlPlugin({ template: './index.html' }),
   ],
   module: {
@@ -118,10 +147,17 @@ const prodDefaultConfig = {
         }),
       },
       {
-        test: /\.scss$/,
+        test: /\.(scss|sass)$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: 'happypack/loader?id=scss',
+          use: 'happypack/loader?id=sass',
+        }),
+      },
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'happypack/loader?id=less',
         }),
       },
       {

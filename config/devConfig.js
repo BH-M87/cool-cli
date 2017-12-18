@@ -85,7 +85,7 @@ const devDefaultConfig = {
       ],
     }),
     new HappyPack({
-      id: 'scss',
+      id: 'sass',
       threads: os.cpus().length,
       loaders: [
         {
@@ -113,6 +113,35 @@ const devDefaultConfig = {
         },
       ],
     }),
+    new HappyPack({
+      id: 'less',
+      threads: os.cpus().length,
+      loaders: [
+        {
+          loader: 'style-loader',
+        },
+        {
+          loader: 'css-loader',
+          options: {
+            modules: false,
+            importLoaders: 1,
+            localIdentName: '[name]__[local]___[hash:base64:5]',
+          },
+        },
+        {
+          loader: 'postcss-loader',
+          query: {
+            config: path.resolve(__dirname, '..', 'postcss.config.js'),
+          },
+        },
+        {
+          loader: 'less-loader',
+          options: {
+            sourceMap: true,
+          },
+        },
+      ],
+    }),
     new HtmlPlugin({ template: './index.html' }),
   ],
   module: {
@@ -122,8 +151,12 @@ const devDefaultConfig = {
         use: 'happypack/loader?id=css',
       },
       {
-        test: /\.scss$/,
-        use: 'happypack/loader?id=scss',
+        test: /\.(scss|sass)$/,
+        use: 'happypack/loader?id=sass',
+      },
+      {
+        test: /\.less$/,
+        use: 'happypack/loader?id=less',
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
