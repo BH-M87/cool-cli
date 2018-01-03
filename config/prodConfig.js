@@ -111,9 +111,6 @@ const prodDefaultConfig = {
       threads: os.cpus().length,
       loaders: [
         {
-          loader: 'style-loader',
-        },
-        {
           loader: 'css-loader',
           options: {
             modules: false,
