@@ -18,6 +18,9 @@ We usually put our webpack configuration in our own project with popular project
 
 ## What's New?
 
+### v0.1.10  
+Using babel-loader on js. In case es6 code exists in js.
+
 ### v0.1.9
 **Fix bug**   
 Do not use style loader with ExtractTextPlugin.

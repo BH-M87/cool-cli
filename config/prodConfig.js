@@ -174,7 +174,7 @@ const prodDefaultConfig = {
         use: 'url-loader?limit=10000&minetype=image/svg+xml',
       },
       {
-        test: /\.jsx?$/,
+        test: /\.(jsx|js)?$/,
         use: 'happypack/loader?id=js',
         exclude: /node_modules/,
       },
