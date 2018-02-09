@@ -41,15 +41,24 @@ function run() {
 
   mock(devServer);
 
-  portfinder.basePort = Number(devServerConfig.port);
+  const basePort = Number(devServerConfig.port);
   portfinder
-    .getPortPromise()
+    .getPortPromise({ port: basePort })
     .then(port => {
       // Will use devServerConfig.port if available, otherwise fall back to a random port
       devServer.listen(port, devServerConfig.host, err => {
         if (err) {
           return console.log(chalk.red(err));
         }
+
+        if (Number(port) !== Number(basePort)) {
+          console.log(
+            chalk.magenta(
+              `Port ${basePort} is occupied, assign new port ${port}.`
+            )
+          );
+        }
+
         console.log(
           `The app is running at: ${chalk.cyan(
             `http://${devServerConfig.host}:${port}/`
