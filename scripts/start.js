@@ -4,6 +4,7 @@ const chalk = require('chalk');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
+const portfinder = require('portfinder');
 const mock = require('../utils/mock');
 const webpackConfig = require('../config/devConfig');
 
@@ -40,16 +41,25 @@ function run() {
 
   mock(devServer);
 
-  devServer.listen(devServerConfig.port, devServerConfig.host, err => {
-    if (err) {
-      return console.log(chalk.red(err));
-    }
-    console.log(
-      `The app is running at: ${chalk.cyan(
-        `http://${devServerConfig.host}:${devServerConfig.port}/`
-      )}`
-    );
-  });
+  portfinder.basePort = Number(devServerConfig.port);
+  portfinder
+    .getPortPromise()
+    .then(port => {
+      // Will use devServerConfig.port if available, otherwise fall back to a random port
+      devServer.listen(port, devServerConfig.host, err => {
+        if (err) {
+          return console.log(chalk.red(err));
+        }
+        console.log(
+          `The app is running at: ${chalk.cyan(
+            `http://${devServerConfig.host}:${port}/`
+          )}`
+        );
+      });
+    })
+    .catch(err => {
+      console.log(`No port available: ${chalk.red(err)}`);
+    });
 }
 
 run();

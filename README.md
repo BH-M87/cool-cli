@@ -1,5 +1,8 @@
 # cool-cli
 ----
+## Install  
+`npm install cool-cli`
+
 ## What?
 A cool cli, with independent webpack config, for building app in a simple way.
 
@@ -17,6 +20,9 @@ We usually put our webpack configuration in our own project with popular project
 3. Bring in test framework.
 
 ## What's New?
+
+### v0.1.14  
+Import portfinder, support find new available port if the default or custom port is occupied.
 
 ### v0.1.10  
 Using babel-loader on js. In case es6 code exists in js.
