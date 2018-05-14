@@ -21,6 +21,9 @@ We usually put our webpack configuration in our own project with popular project
 
 ## What's New?
 
+### v0.2.1  
+Upgrade to Webpack v4.8.1. 
+
 ### v0.1.15  
 Add console.log(chalk.magenta(`Port ${basePort} is occupied, assign new port ${port}.`)); when port is occupied.
 

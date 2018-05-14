@@ -10,6 +10,7 @@ const { srcPath, buildPath, nodeModulesPath } = require('./paths');
 const { devCustomConfig } = require('./customConfig');
 
 const devDefaultConfig = {
+  mode: 'development',
   context: srcPath,
   devtool: 'cheap-module-eval-source-map',
   entry: [
@@ -78,8 +79,10 @@ const devDefaultConfig = {
         },
         {
           loader: 'postcss-loader',
-          query: {
-            config: path.resolve(__dirname, '..', 'postcss.config.js'),
+          options: {
+            config: {
+              path: path.resolve(__dirname, '..', 'postcss.config.js')
+            },
           },
         },
       ],
@@ -101,8 +104,10 @@ const devDefaultConfig = {
         },
         {
           loader: 'postcss-loader',
-          query: {
-            config: path.resolve(__dirname, '..', 'postcss.config.js'),
+          options: {
+            config: {
+              path: path.resolve(__dirname, '..', 'postcss.config.js')
+            },
           },
         },
         {
@@ -130,14 +135,17 @@ const devDefaultConfig = {
         },
         {
           loader: 'postcss-loader',
-          query: {
-            config: path.resolve(__dirname, '..', 'postcss.config.js'),
+          options: {
+            config: {
+              path: path.resolve(__dirname, '..', 'postcss.config.js')
+            },
           },
         },
         {
           loader: 'less-loader',
           options: {
             sourceMap: true,
+            javascriptEnabled: true
           },
         },
       ],

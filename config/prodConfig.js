@@ -1,6 +1,6 @@
 'use strict';
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const HappyPack = require('happypack');
@@ -11,6 +11,7 @@ const { srcPath, buildPath, nodeModulesPath } = require('./paths');
 const { prodCustomConfig } = require('./customConfig');
 
 const prodDefaultConfig = {
+  mode: 'production',  
   bail: true,
   context: srcPath,
   devtool: false,
@@ -28,7 +29,7 @@ const prodDefaultConfig = {
     extensions: ['.js', '.json', '.jsx'],
   },
   plugins: [
-    new ExtractTextPlugin('[name].[contenthash:12].css'),
+    new MiniCssExtractPlugin({filename:'[name].[hash:8].css'}),
     new UglifyJSPlugin({
       parallel: true,
       sourceMap: false,
@@ -73,8 +74,10 @@ const prodDefaultConfig = {
         },
         {
           loader: 'postcss-loader',
-          query: {
-            config: path.resolve(__dirname, '..', 'postcss.config.js'),
+          options: {
+            config: {
+              path: path.resolve(__dirname, '..', 'postcss.config.js')
+            },
           },
         },
       ],
@@ -94,8 +97,10 @@ const prodDefaultConfig = {
         },
         {
           loader: 'postcss-loader',
-          query: {
-            config: path.resolve(__dirname, '..', 'postcss.config.js'),
+          options: {
+            config: {
+              path: path.resolve(__dirname, '..', 'postcss.config.js')
+            },
           },
         },
         {
@@ -120,14 +125,17 @@ const prodDefaultConfig = {
         },
         {
           loader: 'postcss-loader',
-          query: {
-            config: path.resolve(__dirname, '..', 'postcss.config.js'),
+          options: {
+            config: {
+              path: path.resolve(__dirname, '..', 'postcss.config.js')
+            },
           },
         },
         {
           loader: 'less-loader',
           options: {
             sourceMap: true,
+            javascriptEnabled: true
           },
         },
       ],
@@ -138,24 +146,24 @@ const prodDefaultConfig = {
     rules: [
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'happypack/loader?id=css',
-        }),
+        use: [
+          MiniCssExtractPlugin.loader,
+          'happypack/loader?id=css'
+        ]
       },
       {
         test: /\.(scss|sass)$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'happypack/loader?id=sass',
-        }),
+        use: [
+          MiniCssExtractPlugin.loader,
+          'happypack/loader?id=sass'
+        ]
       },
       {
         test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'happypack/loader?id=less',
-        }),
+        use: [
+          MiniCssExtractPlugin.loader,
+          'happypack/loader?id=less'
+        ]
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,

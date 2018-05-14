@@ -1,7 +1,7 @@
 'use strict';
 
 const { devCustomConfigPath, prodCustomConfigPath } = require('./paths');
-const fs = require('fs');
+const fs = require('fs-extra');
 
 let devCustomConfig = {};
 let prodCustomConfig = {};

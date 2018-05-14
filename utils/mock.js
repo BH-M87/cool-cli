@@ -1,7 +1,7 @@
 /* Highly appreciate to roadhog, https://github.com/sorrycc/roadhog */
 'use strict';
 
-const fs = require('fs');
+const fs = require('fs-extra');
 const assert = require('assert');
 const chokidar = require('chokidar');
 const chalk = require('chalk');
