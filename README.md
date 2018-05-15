@@ -21,6 +21,10 @@ We usually put our webpack configuration in our own project with popular project
 
 ## What's New?
 
+### v0.2.2  
+Fix a bug in mock data.  
+From webpack-dev-server 3.0.0, the stack name changed from webpackDevMiddleware to middleware, in order to change the order of stack in app._router，put historyApiFallback after mock data listener.  
+
 ### v0.2.1  
 Upgrade to Webpack v4.8.1. 
 

@@ -43,10 +43,10 @@ function getConfig(filePath) {
 
 function createMockHandler(method, path, value) {
   return function mockHandler(...args) {
-    const res = args[1];
     if (typeof value === 'function') {
       value(...args);
     } else {
+      const res = args[1];
       res.json(value);
     }
   };
@@ -133,10 +133,11 @@ function realApplyMock(devServer) {
     }
   });
 
-  // 调整 stack，把 historyApiFallback 放到最后
+  // change the order of stacks，put historyApiFallback after mock data listener
   let lastIndex = null;
   app._router.stack.forEach((item, index) => {
-    if (item.name === 'webpackDevMiddleware') {
+    // From webpack-dev-server 3.0.0, the stack name changed from webpackDevMiddleware to middleware
+    if (item.name === 'middleware') {
       lastIndex = index;
     }
   });
