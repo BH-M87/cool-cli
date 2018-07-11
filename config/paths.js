@@ -3,6 +3,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 
+const CONFIG_FILE = '.cool.config.js';
 const DEV_CONFIG_FILE = '.cool.dev.config.js';
 const PROD_CONFIG_FILE = '.cool.prod.config.js';
 
@@ -20,6 +21,9 @@ module.exports = {
   },
   get nodeModulesPath() {
     return resolveApp('node_modules');
+  },
+  get customConfigPath() {
+    return resolveApp(CONFIG_FILE);
   },
   get devCustomConfigPath() {
     return resolveApp(DEV_CONFIG_FILE);

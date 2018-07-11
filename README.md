@@ -21,6 +21,14 @@ We usually put our webpack configuration in our own project with popular project
 
 ## What's New?
 
+### v0.2.3  
+Add `.cool.config.js` to support some customize require. For now, add cssModules option, set to `true` to open css modules, default value is `false`.  
+```
+module.exports = {
+  cssModules: true,
+};
+```
+
 ### v0.2.2  
 Fix a bug in mock data.  
 From webpack-dev-server 3.0.0, the stack name changed from webpackDevMiddleware to middleware, in order to change the order of stack in app._router，put historyApiFallback after mock data listener.  

@@ -1,6 +1,6 @@
 'use strict';
 
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const HappyPack = require('happypack');
@@ -8,10 +8,12 @@ const os = require('os');
 const path = require('path');
 const _ = require('lodash');
 const { srcPath, buildPath, nodeModulesPath } = require('./paths');
-const { prodCustomConfig } = require('./customConfig');
+const { customConfig, prodCustomConfig } = require('./customConfig');
+
+const { cssModules = false } = customConfig;
 
 const prodDefaultConfig = {
-  mode: 'production',  
+  mode: 'production',
   bail: true,
   context: srcPath,
   devtool: false,
@@ -29,7 +31,7 @@ const prodDefaultConfig = {
     extensions: ['.js', '.json', '.jsx'],
   },
   plugins: [
-    new MiniCssExtractPlugin({filename:'[name].[hash:8].css'}),
+    new MiniCssExtractPlugin({ filename: '[name].[hash:8].css' }),
     new UglifyJSPlugin({
       parallel: true,
       sourceMap: false,
@@ -71,12 +73,15 @@ const prodDefaultConfig = {
       loaders: [
         {
           loader: 'css-loader',
+          options: {
+            modules: cssModules,
+          },
         },
         {
           loader: 'postcss-loader',
           options: {
             config: {
-              path: path.resolve(__dirname, '..', 'postcss.config.js')
+              path: path.resolve(__dirname, '..', 'postcss.config.js'),
             },
           },
         },
@@ -89,7 +94,7 @@ const prodDefaultConfig = {
         {
           loader: 'css-loader',
           query: {
-            modules: false,
+            modules: cssModules,
             importLoaders: 1,
             // minimize: true, // There is not obvious change on file size after minimize.
             localIdentName: '[name]__[local]___[hash:base64:5]',
@@ -99,7 +104,7 @@ const prodDefaultConfig = {
           loader: 'postcss-loader',
           options: {
             config: {
-              path: path.resolve(__dirname, '..', 'postcss.config.js')
+              path: path.resolve(__dirname, '..', 'postcss.config.js'),
             },
           },
         },
@@ -118,7 +123,7 @@ const prodDefaultConfig = {
         {
           loader: 'css-loader',
           options: {
-            modules: false,
+            modules: cssModules,
             importLoaders: 1,
             localIdentName: '[name]__[local]___[hash:base64:5]',
           },
@@ -127,7 +132,7 @@ const prodDefaultConfig = {
           loader: 'postcss-loader',
           options: {
             config: {
-              path: path.resolve(__dirname, '..', 'postcss.config.js')
+              path: path.resolve(__dirname, '..', 'postcss.config.js'),
             },
           },
         },
@@ -135,7 +140,7 @@ const prodDefaultConfig = {
           loader: 'less-loader',
           options: {
             sourceMap: true,
-            javascriptEnabled: true
+            javascriptEnabled: true,
           },
         },
       ],
@@ -146,24 +151,15 @@ const prodDefaultConfig = {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'happypack/loader?id=css'
-        ]
+        use: [MiniCssExtractPlugin.loader, 'happypack/loader?id=css'],
       },
       {
         test: /\.(scss|sass)$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'happypack/loader?id=sass'
-        ]
+        use: [MiniCssExtractPlugin.loader, 'happypack/loader?id=sass'],
       },
       {
         test: /\.less$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'happypack/loader?id=less'
-        ]
+        use: [MiniCssExtractPlugin.loader, 'happypack/loader?id=less'],
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,

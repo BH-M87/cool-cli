@@ -7,7 +7,9 @@ const os = require('os');
 const path = require('path');
 const _ = require('lodash');
 const { srcPath, buildPath, nodeModulesPath } = require('./paths');
-const { devCustomConfig } = require('./customConfig');
+const { customConfig, devCustomConfig } = require('./customConfig');
+
+const { cssModules = false } = customConfig;
 
 const devDefaultConfig = {
   mode: 'development',
@@ -74,14 +76,14 @@ const devDefaultConfig = {
         {
           loader: 'css-loader',
           options: {
-            modules: false,
+            modules: cssModules,
           },
         },
         {
           loader: 'postcss-loader',
           options: {
             config: {
-              path: path.resolve(__dirname, '..', 'postcss.config.js')
+              path: path.resolve(__dirname, '..', 'postcss.config.js'),
             },
           },
         },
@@ -97,7 +99,7 @@ const devDefaultConfig = {
         {
           loader: 'css-loader',
           options: {
-            modules: false,
+            modules: cssModules,
             importLoaders: 1,
             localIdentName: '[name]__[local]___[hash:base64:5]',
           },
@@ -106,7 +108,7 @@ const devDefaultConfig = {
           loader: 'postcss-loader',
           options: {
             config: {
-              path: path.resolve(__dirname, '..', 'postcss.config.js')
+              path: path.resolve(__dirname, '..', 'postcss.config.js'),
             },
           },
         },
@@ -128,7 +130,7 @@ const devDefaultConfig = {
         {
           loader: 'css-loader',
           options: {
-            modules: false,
+            modules: cssModules,
             importLoaders: 1,
             localIdentName: '[name]__[local]___[hash:base64:5]',
           },
@@ -137,7 +139,7 @@ const devDefaultConfig = {
           loader: 'postcss-loader',
           options: {
             config: {
-              path: path.resolve(__dirname, '..', 'postcss.config.js')
+              path: path.resolve(__dirname, '..', 'postcss.config.js'),
             },
           },
         },
@@ -145,7 +147,7 @@ const devDefaultConfig = {
           loader: 'less-loader',
           options: {
             sourceMap: true,
-            javascriptEnabled: true
+            javascriptEnabled: true,
           },
         },
       ],
