@@ -21,7 +21,7 @@ We usually put our webpack configuration in our own project with popular project
 
 ## What's New?
 
-### v0.2.4  
+### v0.2.5  
 Using `svg-url-loader` to load svg instead of `url-loader`.
 
 > There are some benefits for choosing utf-8 encoding over base64.

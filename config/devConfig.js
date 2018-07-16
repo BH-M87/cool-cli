@@ -174,11 +174,23 @@ const devDefaultConfig = {
       },
       {
         test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url-loader?limit=10000&minetype=application/font-woff"
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 10000,
+            minetype: "application/font-woff"
+          }
+        }
       },
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url-loader?limit=10000&minetype=application/octet-stream"
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 10000,
+            minetype: "application/octet-stream"
+          }
+        }
       },
       {
         test: /\.(jsx|js)?$/,
@@ -187,7 +199,12 @@ const devDefaultConfig = {
       },
       {
         test: /\.(jpe?g|png|gif)$/i,
-        loaders: ["url-loader?limit=8192"],
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 8192
+          }
+        },
         exclude: /node_modules/
       },
       {
