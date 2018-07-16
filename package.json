@@ -1,6 +1,6 @@
 {
   "name": "cool-cli",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A cool cli, build for independent webpack config.",
   "author": "RJAVA1990<liuxuheng1990@gmail.com>",
   "license": "MIT",
@@ -76,6 +76,7 @@
     "react-hot-loader": "^4.3.3",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
+    "svg-url-loader": "^2.3.2",
     "uglifyjs-webpack-plugin": "^1.2.7",
     "url": "^0.11.0",
     "url-loader": "^1.0.1",

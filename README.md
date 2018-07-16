@@ -21,6 +21,15 @@ We usually put our webpack configuration in our own project with popular project
 
 ## What's New?
 
+### v0.2.4  
+Using `svg-url-loader` to load svg instead of `url-loader`.
+
+> There are some benefits for choosing utf-8 encoding over base64.
+>
+> 1. Resulting string is shorter (can be ~2 times shorter for 2K-sized icons);
+> 2. Resulting string will be compressed better when using gzip compression;
+> 3. Browser parses utf-8 encoded string faster than its base64 equivalent.
+
 ### v0.2.3  
 Add `.cool.config.js` to support some customize require. For now, add cssModules option, set to `true` to open css modules, default value is `false`.  
 ```
