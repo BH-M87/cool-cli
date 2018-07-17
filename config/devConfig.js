@@ -134,6 +134,13 @@ const devDefaultConfig = {
       {
         test: /\.svg$/,
         use: {
+          loader: "file-loader"
+        },
+        include: /node_modules/
+      },
+      {
+        test: /\.svg$/,
+        use: {
           loader: "svg-url-loader",
           options: {
             noquotes: true,

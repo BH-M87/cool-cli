@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v0.2.7  
+When load `svg` from `node_modules`, using `file-loader`.
+
 ### v0.2.6  
 1. Code refactoring, extract `happyPackPlugin` out of `devConfig.js` and `prodConfig.js`.
 2. Support `devHtmlTemplate` and `prodHtmlTemplate` configurations in `.cool.config.js`, to change the template loaction and name, or even set `false` to close the `html-webpack-plugin` function. Default value is `./index.html`.
