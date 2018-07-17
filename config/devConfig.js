@@ -1,15 +1,19 @@
 "use strict";
 
 const webpack = require("webpack");
-const HappyPack = require("happypack");
 const HtmlPlugin = require("html-webpack-plugin");
-const os = require("os");
 const path = require("path");
 const _ = require("lodash");
 const { srcPath, buildPath, nodeModulesPath } = require("./paths");
 const { customConfig, devCustomConfig } = require("./customConfig");
+const {
+  getJsHappyPack,
+  getCssHappyPack,
+  getSassHappyPack,
+  getLessHappyPack
+} = require("./happyPackPlugin");
 
-const { cssModules = false } = customConfig;
+const { cssModules = false, devHtmlTemplate = "./index.html" } = customConfig;
 
 const devDefaultConfig = {
   mode: "development",
@@ -34,139 +38,61 @@ const devDefaultConfig = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new HappyPack({
-      id: "js",
-      threads: os.cpus().length,
-      loaders: [
-        {
-          loader: "babel-loader",
-          options: {
-            babelrc: false,
-            presets: [
-              [require.resolve("babel-preset-env"), { modules: false }],
-              require.resolve("babel-preset-react"),
-              require.resolve("babel-preset-stage-0")
-            ],
-            plugins: [
-              require.resolve("react-hot-loader/babel"),
-              require.resolve("babel-plugin-transform-decorators-legacy"),
-              [
-                require.resolve("babel-plugin-transform-runtime"),
-                {
-                  helpers: false,
-                  polyfill: false,
-                  regenerator: true,
-                  moduleName: path.dirname(
-                    require.resolve("babel-runtime/package")
-                  )
-                }
-              ]
-            ]
-          }
-        }
-      ]
-    }),
-    new HappyPack({
-      id: "css",
-      threads: os.cpus().length,
-      loaders: [
-        {
-          loader: "style-loader"
-        },
-        {
-          loader: "css-loader",
-          options: {
-            modules: cssModules
-          }
-        },
-        {
-          loader: "postcss-loader",
-          options: {
-            config: {
-              path: path.resolve(__dirname, "..", "postcss.config.js")
-            }
-          }
-        }
-      ]
-    }),
-    new HappyPack({
-      id: "sass",
-      threads: os.cpus().length,
-      loaders: [
-        {
-          loader: "style-loader"
-        },
-        {
-          loader: "css-loader",
-          options: {
-            modules: cssModules,
-            importLoaders: 1,
-            localIdentName: "[name]__[local]___[hash:base64:5]"
-          }
-        },
-        {
-          loader: "postcss-loader",
-          options: {
-            config: {
-              path: path.resolve(__dirname, "..", "postcss.config.js")
-            }
-          }
-        },
-        {
-          loader: "sass-loader",
-          options: {
-            sourceMap: true
-          }
-        }
-      ]
-    }),
-    new HappyPack({
-      id: "less",
-      threads: os.cpus().length,
-      loaders: [
-        {
-          loader: "style-loader"
-        },
-        {
-          loader: "css-loader",
-          options: {
-            modules: cssModules,
-            importLoaders: 1,
-            localIdentName: "[name]__[local]___[hash:base64:5]"
-          }
-        },
-        {
-          loader: "postcss-loader",
-          options: {
-            config: {
-              path: path.resolve(__dirname, "..", "postcss.config.js")
-            }
-          }
-        },
-        {
-          loader: "less-loader",
-          options: {
-            sourceMap: true,
-            javascriptEnabled: true
-          }
-        }
-      ]
-    }),
-    new HtmlPlugin({ template: "./index.html" })
+    getJsHappyPack("js", "dev"),
+    getCssHappyPack("css", "dev", cssModules),
+    getSassHappyPack("sass", "dev", cssModules),
+    getLessHappyPack("less", "dev", cssModules),
+    getCssHappyPack("cssGlobal", "dev"),
+    getSassHappyPack("sassGlobal", "dev"),
+    getLessHappyPack("lessGlobal", "dev")
   ],
   module: {
     rules: [
       {
+        test: /\.(jsx|js)?$/,
+        use: "happypack/loader?id=js",
+        exclude: /node_modules/
+      },
+      {
         test: /\.css$/,
-        use: "happypack/loader?id=css"
+        oneOf: [
+          {
+            resourceQuery: /global/,
+            use: "happypack/loader?id=cssGlobal"
+          },
+          {
+            use: "happypack/loader?id=css"
+          }
+        ]
       },
       {
         test: /\.(scss|sass)$/,
-        use: "happypack/loader?id=sass"
+        oneOf: [
+          {
+            resourceQuery: /global/,
+            use: "happypack/loader?id=sassGlobal"
+          },
+          {
+            use: "happypack/loader?id=sass"
+          }
+        ]
       },
       {
         test: /\.less$/,
-        use: "happypack/loader?id=less"
+        oneOf: [
+          {
+            resourceQuery: /global/,
+            use: "happypack/loader?id=lessGlobal"
+          },
+          {
+            use: "happypack/loader?id=less"
+          }
+        ]
+      },
+      {
+        test: /\.*$/,
+        resourceQuery: /external/,
+        loader: "file-loader"
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -178,6 +104,7 @@ const devDefaultConfig = {
           loader: "url-loader",
           options: {
             limit: 10000,
+            context: srcPath,
             minetype: "application/font-woff"
           }
         }
@@ -188,21 +115,18 @@ const devDefaultConfig = {
           loader: "url-loader",
           options: {
             limit: 10000,
+            context: srcPath,
             minetype: "application/octet-stream"
           }
         }
-      },
-      {
-        test: /\.(jsx|js)?$/,
-        use: "happypack/loader?id=js",
-        exclude: /node_modules/
       },
       {
         test: /\.(jpe?g|png|gif)$/i,
         use: {
           loader: "url-loader",
           options: {
-            limit: 8192
+            limit: 8192,
+            context: srcPath
           }
         },
         exclude: /node_modules/
@@ -248,5 +172,10 @@ const devDefaultConfig = {
     }
   }
 };
+
+// from user config
+if (devHtmlTemplate) {
+  devDefaultConfig.plugins.push(new HtmlPlugin({ template: devHtmlTemplate }));
+}
 
 module.exports = _.merge({}, devDefaultConfig, devCustomConfig);
