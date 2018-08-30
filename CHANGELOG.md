@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v0.2.8  
+1. Support passing arguments like `--cssModules --devHtmlTemplate=index.html prodHtmlTemplate=index.html --bundleLibrary --library --libraryTarget` as well as set in `.cool.config.js`.  
+2. Add new argument `bundleLibrary` to support bundle your project into library. Default `'umd'`. Also, can pass `libraryTarget` to set the value.  
+3. Add new argument `library` to set the library name you want to export. Default to `name` parameter in `package.json`.  
+4. Another way, set it in `.cool.prod.config.js`, change the `output` setting in webpack config can do the same.  
+
 ### v0.2.7  
 When load `svg` from `node_modules`, using `file-loader`.
 

@@ -1,6 +1,6 @@
 {
   "name": "cool-cli",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "A cool cli, build for independent webpack config.",
   "author": "RJAVA1990<liuxuheng1990@gmail.com>",
   "license": "MIT",
@@ -81,7 +81,8 @@
     "url": "^0.11.0",
     "url-loader": "^1.0.1",
     "webpack": "^4.16.0",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.4",
+    "yargs": "^12.0.1"
   },
   "config": {
     "commitizen": {

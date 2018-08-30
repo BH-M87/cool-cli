@@ -5,8 +5,12 @@ const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
 const path = require("path");
 const _ = require("lodash");
-const { srcPath, buildPath, nodeModulesPath } = require("./paths");
-const { customConfig, prodCustomConfig } = require("./customConfig");
+const { srcPath, buildPath, distPath, nodeModulesPath } = require("./paths");
+const {
+  packageJsonConfig,
+  customConfig,
+  prodCustomConfig
+} = require("./customConfig");
 const {
   getJsHappyPack,
   getCssHappyPack,
@@ -14,7 +18,13 @@ const {
   getLessHappyPack
 } = require("./happyPackPlugin");
 
-const { cssModules = false, prodHtmlTemplate = "./index.html" } = customConfig;
+const {
+  cssModules = false,
+  prodHtmlTemplate = "./index.html",
+  bundleLibrary = false,
+  library = packageJsonConfig.name,
+  libraryTarget
+} = customConfig;
 
 const prodDefaultConfig = {
   mode: "production",
@@ -23,19 +33,32 @@ const prodDefaultConfig = {
   devtool: false,
   entry: "./index",
   externals: {},
-  output: {
-    path: buildPath,
-    filename: "[name].[chunkhash:8].js",
-    chunkFilename: "[name].[chunkhash:8].js",
-    publicPath: "/",
-    crossOriginLoading: "anonymous"
-  },
+  output: bundleLibrary
+    ? {
+        path: distPath,
+        filename: "[name].js",
+        chunkFilename: "[name].js",
+        publicPath: "/",
+        crossOriginLoading: "anonymous",
+        library,
+        libraryTarget:
+          libraryTarget || (bundleLibrary === true ? "umd" : bundleLibrary)
+      }
+    : {
+        path: buildPath,
+        filename: "[name].[chunkhash:8].js",
+        chunkFilename: "[name].[chunkhash:8].js",
+        publicPath: "/",
+        crossOriginLoading: "anonymous"
+      },
   resolve: {
     modules: ["node_modules", nodeModulesPath, srcPath],
     extensions: [".js", ".json", ".jsx"]
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: "[name].[hash:8].css" }),
+    new MiniCssExtractPlugin({
+      filename: `[name]${bundleLibrary ? "" : ".[hash:8]"}.css`
+    }),
     new UglifyJSPlugin({
       parallel: true,
       sourceMap: false
