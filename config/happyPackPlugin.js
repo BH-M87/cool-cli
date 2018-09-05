@@ -3,6 +3,9 @@
 const HappyPack = require("happypack");
 const os = require("os");
 const path = require("path");
+const { customConfig } = require("./customConfig");
+
+const { targets } = customConfig;
 
 // env should be one of 'prod' and 'dev'
 const getJsHappyPack = (id = "js", env) => {
@@ -15,7 +18,7 @@ const getJsHappyPack = (id = "js", env) => {
         options: {
           babelrc: false,
           presets: [
-            [require.resolve("babel-preset-env"), { modules: false }],
+            [require.resolve("babel-preset-env"), { modules: false, targets }],
             require.resolve("babel-preset-react"),
             require.resolve("babel-preset-stage-0")
           ],

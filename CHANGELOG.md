@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v0.2.9  
+Support set `targets` configuration in `.cool.config.js` to config the targets in `babel-loader`.
+
 ### v0.2.8  
 1. Support passing arguments like `--cssModules --devHtmlTemplate=index.html prodHtmlTemplate=index.html --bundleLibrary --library --libraryTarget` as well as set in `.cool.config.js`.  
 2. Add new argument `bundleLibrary` to support bundle your project into library. Default `'umd'`. Also, can pass `libraryTarget` to set the value.  
