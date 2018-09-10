@@ -121,6 +121,13 @@ const devDefaultConfig = {
         }
       },
       {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        use: {
+          loader: "file-loader"
+        },
+        include: /node_modules/
+      },
+      {
         test: /\.(jpe?g|png|gif)$/i,
         use: {
           loader: "url-loader",
@@ -130,13 +137,6 @@ const devDefaultConfig = {
           }
         },
         exclude: /node_modules/
-      },
-      {
-        test: /\.svg$/,
-        use: {
-          loader: "file-loader"
-        },
-        include: /node_modules/
       },
       {
         test: /\.svg$/,

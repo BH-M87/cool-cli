@@ -1,6 +1,6 @@
 {
   "name": "cool-cli",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "A cool cli, build for independent webpack config.",
   "author": "RJAVA1990<liuxuheng1990@gmail.com>",
   "license": "MIT",
@@ -61,7 +61,7 @@
     "cross-spawn": "^6.0.5",
     "css-loader": "^1.0.0",
     "express-http-proxy": "^1.2.0",
-    "file-loader": "^1.1.11",
+    "file-loader": "^2.0.0",
     "fs-extra": "^6.0.1",
     "happypack": "^5.0.0",
     "html-webpack-plugin": "^3.2.0",
