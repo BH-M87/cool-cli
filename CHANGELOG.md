@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
-### v0.2.10  
+### v0.2.11  
 1. Change `devConfig`, load `svg` with `file-loader` in `node_modules`.
 2. Update `file-loader` version to `^2.0.0`.
 
