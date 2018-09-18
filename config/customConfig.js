@@ -21,6 +21,14 @@ if (fs.existsSync(packageJsonPath)) {
 
 if (fs.existsSync(customConfigPath)) {
   customConfig = require(customConfigPath);
+  // valid config:
+  //     'cssModules',
+  //     'devHtmlTemplate',
+  //     'prodHtmlTemplate',
+  //     'bundleLibrary',
+  //     'library',
+  //     'libraryTarget',
+  //     'providePluginConfig',
 }
 
 if (fs.existsSync(devCustomConfigPath)) {

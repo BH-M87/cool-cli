@@ -13,7 +13,11 @@ const {
   getLessHappyPack
 } = require("./happyPackPlugin");
 
-const { cssModules = false, devHtmlTemplate = "./index.html" } = customConfig;
+const {
+  cssModules = false,
+  devHtmlTemplate = "./index.html",
+  providePluginConfig
+} = customConfig;
 
 const devDefaultConfig = {
   mode: "development",
@@ -183,6 +187,9 @@ const devDefaultConfig = {
 // from user config
 if (devHtmlTemplate) {
   devDefaultConfig.plugins.push(new HtmlPlugin({ template: devHtmlTemplate }));
+}
+if (providePluginConfig) {
+  devDefaultConfig.plugins.push(new webpack.ProvidePlugin(providePluginConfig));
 }
 
 module.exports = _.merge({}, devDefaultConfig, devCustomConfig);

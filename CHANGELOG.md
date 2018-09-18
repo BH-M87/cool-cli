@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v0.2.12  
+Support set `providePluginConfig` in `.cool.config.js` to config the configuration for `ProvidePlugin`.   
+Aim to automatically load modules instead of having to `import` or `require` them everywhere.
+
 ### v0.2.11  
 1. Change `devConfig`, load `svg` with `file-loader` in `node_modules`.
 2. Update `file-loader` version to `^2.0.0`.

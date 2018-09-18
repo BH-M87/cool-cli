@@ -1,5 +1,6 @@
 "use strict";
 
+const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
@@ -9,7 +10,8 @@ const { srcPath, buildPath, distPath, nodeModulesPath } = require("./paths");
 const {
   packageJsonConfig,
   customConfig,
-  prodCustomConfig
+  prodCustomConfig,
+  providePluginConfig
 } = require("./customConfig");
 const {
   getJsHappyPack,
@@ -190,6 +192,11 @@ const prodDefaultConfig = {
 if (prodHtmlTemplate) {
   prodDefaultConfig.plugins.push(
     new HtmlPlugin({ template: prodHtmlTemplate })
+  );
+}
+if (providePluginConfig) {
+  prodDefaultConfig.plugins.push(
+    new webpack.ProvidePlugin(providePluginConfig)
   );
 }
 
