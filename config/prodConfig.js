@@ -200,4 +200,6 @@ if (providePluginConfig) {
   );
 }
 
-module.exports = _.merge({}, prodDefaultConfig, prodCustomConfig);
+module.exports = _.isFunction(prodCustomConfig)
+  ? prodCustomConfig(prodDefaultConfig)
+  : _.merge({}, prodDefaultConfig, prodCustomConfig);

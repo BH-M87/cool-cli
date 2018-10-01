@@ -192,4 +192,6 @@ if (providePluginConfig) {
   devDefaultConfig.plugins.push(new webpack.ProvidePlugin(providePluginConfig));
 }
 
-module.exports = _.merge({}, devDefaultConfig, devCustomConfig);
+module.exports = _.isFunction(devCustomConfig)
+  ? devCustomConfig(devDefaultConfig)
+  : _.merge({}, devDefaultConfig, devCustomConfig);

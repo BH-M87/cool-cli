@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v0.2.13  
+For `.cool.dev.config.js` and `.cool.prod.config.js`, support export both function and object.  
+1. Object will be treated with `_.merge` to recursively merges own and inherited enumerable string keyed properties.  
+2. the default config will be passed as param of the funcion, and the modified config will be expected return from the funcion.  
+  ```
+  // .cool.dev.config.js or .cool.prod.config.js
+  module.exports = config => {
+    // Do whatever you want to modify the config
+    return config;
+  };
+  ```
+
 ### v0.2.12  
 Support set `providePluginConfig` in `.cool.config.js` to config the configuration for `ProvidePlugin`.   
 Aim to automatically load modules instead of having to `import` or `require` them everywhere.
