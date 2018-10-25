@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v0.2.14  
+Add another `resourceQuery` in js loader, support set `?es6` to `js` or `jsx` file to enable `babel-loader` in `node_modules` folder. Default not to use `babel-loader` in `node_modules`.
+
 ### v0.2.13  
 For `.cool.dev.config.js` and `.cool.prod.config.js`, support export both function and object.  
 1. Object will be treated with `_.merge` to recursively merges own and inherited enumerable string keyed properties.  

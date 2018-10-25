@@ -77,8 +77,16 @@ const prodDefaultConfig = {
     rules: [
       {
         test: /\.(jsx|js)?$/,
-        use: "happypack/loader?id=js",
-        exclude: /node_modules/
+        oneOf: [
+          {
+            resourceQuery: /es6/,
+            use: "happypack/loader?id=js"
+          },
+          {
+            use: "happypack/loader?id=js",
+            exclude: /node_modules/
+          }
+        ]
       },
       {
         test: /\.css$/,
