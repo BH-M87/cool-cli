@@ -1,10 +1,12 @@
 "use strict";
 
 const webpack = require("webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
+const fs = require("fs-extra");
 const path = require("path");
 const _ = require("lodash");
-const { srcPath, buildPath, nodeModulesPath } = require("./paths");
+const { srcPath, buildPath, nodeModulesPath, staticPath } = require("./paths");
 const { customConfig, devCustomConfig } = require("./customConfig");
 const {
   getJsHappyPack,
@@ -198,6 +200,17 @@ if (devHtmlTemplate) {
 }
 if (providePluginConfig) {
   devDefaultConfig.plugins.push(new webpack.ProvidePlugin(providePluginConfig));
+}
+// add CopyWebpackPlugin
+if (fs.existsSync(staticPath)) {
+  devDefaultConfig.plugins.push(
+    new CopyWebpackPlugin([
+      {
+        from: staticPath,
+        to: `${buildPath}/static`
+      }
+    ])
+  );
 }
 
 module.exports = _.isFunction(devCustomConfig)

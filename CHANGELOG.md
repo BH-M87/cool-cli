@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v0.2.15  
+Add `CopyWebpackPlugin`. Copy `static` into `build/static` when bundle the app.  
+Now, can put your static files in `static`, and using it with `/static/yourFile`.
+
 ### v0.2.14  
 Add another `resourceQuery` in js loader, support set `?es6` to `js` or `jsx` file to enable `babel-loader` in `node_modules` folder. Default not to use `babel-loader` in `node_modules`.
 

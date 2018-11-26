@@ -1,12 +1,20 @@
 "use strict";
 
 const webpack = require("webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
+const fs = require("fs-extra");
 const path = require("path");
 const _ = require("lodash");
-const { srcPath, buildPath, distPath, nodeModulesPath } = require("./paths");
+const {
+  srcPath,
+  buildPath,
+  distPath,
+  nodeModulesPath,
+  staticPath
+} = require("./paths");
 const {
   packageJsonConfig,
   customConfig,
@@ -205,6 +213,17 @@ if (prodHtmlTemplate) {
 if (providePluginConfig) {
   prodDefaultConfig.plugins.push(
     new webpack.ProvidePlugin(providePluginConfig)
+  );
+}
+// add CopyWebpackPlugin
+if (fs.existsSync(staticPath)) {
+  prodDefaultConfig.plugins.push(
+    new CopyWebpackPlugin([
+      {
+        from: staticPath,
+        to: `${buildPath}/static`
+      }
+    ])
   );
 }
 

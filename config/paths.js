@@ -22,6 +22,9 @@ module.exports = {
   get srcPath() {
     return resolveApp("src");
   },
+  get staticPath() {
+    return resolveApp("static");
+  },
   get nodeModulesPath() {
     return resolveApp("node_modules");
   },
