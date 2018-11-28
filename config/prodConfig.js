@@ -48,7 +48,6 @@ const prodDefaultConfig = {
         path: distPath,
         filename: "[name].js",
         chunkFilename: "[name].js",
-        publicPath: "/",
         crossOriginLoading: "anonymous",
         library,
         libraryTarget:
@@ -58,7 +57,6 @@ const prodDefaultConfig = {
         path: buildPath,
         filename: "[name].[chunkhash:8].js",
         chunkFilename: "[name].[chunkhash:8].js",
-        publicPath: "/",
         crossOriginLoading: "anonymous"
       },
   resolve: {

@@ -35,7 +35,6 @@ const devDefaultConfig = {
     path: buildPath,
     filename: "[name].js",
     chunkFilename: "[name].js",
-    publicPath: "/",
     crossOriginLoading: "anonymous"
   },
   resolve: {

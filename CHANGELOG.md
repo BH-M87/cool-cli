@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ## What's New?
 
 ### v0.2.16  
+Remove `publicPath` config in `output`, using relative path.
+
+### v0.2.16  
 Add `CopyWebpackPlugin`. Copy `static` into `build/static` when bundle the app.  
 Now, can put your static files in `static`, and using it with `/static/yourFile`.
 
