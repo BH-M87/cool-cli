@@ -33,7 +33,8 @@ const {
   prodHtmlTemplate = "./index.html",
   bundleLibrary = false,
   library = packageJsonConfig.name,
-  libraryTarget
+  libraryTarget,
+  chunkHash = true
 } = customConfig;
 
 const prodDefaultConfig = {
@@ -55,8 +56,12 @@ const prodDefaultConfig = {
       }
     : {
         path: buildPath,
-        filename: "[name].[chunkhash:8].js",
-        chunkFilename: "[name].[chunkhash:8].js",
+        filename: `[name]${
+          chunkHash ? `.[chunkhash:${chunkHash === true ? 8 : chunkHash}]` : ""
+        }.js`,
+        chunkFilename: `[name]${
+          chunkHash ? `.[chunkhash:${chunkHash === true ? 8 : chunkHash}]` : ""
+        }.js`,
         crossOriginLoading: "anonymous"
       },
   resolve: {
@@ -65,7 +70,11 @@ const prodDefaultConfig = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: `[name]${bundleLibrary ? "" : ".[hash:8]"}.css`
+      filename: `[name]${
+        bundleLibrary || !chunkHash
+          ? ""
+          : `.[hash:${chunkHash === true ? 8 : chunkHash}]`
+      }.css`
     }),
     new UglifyJSPlugin({
       parallel: true,

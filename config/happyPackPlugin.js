@@ -7,11 +7,14 @@ const { customConfig } = require("./customConfig");
 
 const { targets } = customConfig;
 
+// threads, keep 1 thread remain for management thread
+const threads = os.cpus().length - 1;
+
 // env should be one of 'prod' and 'dev'
 const getJsHappyPack = (id = "js", env) => {
   const happyPackConfig = {
     id,
-    threads: os.cpus().length,
+    threads,
     loaders: [
       {
         loader: "babel-loader",
@@ -64,7 +67,7 @@ const getJsHappyPack = (id = "js", env) => {
 const getCssHappyPack = (id = "css", env, cssModules = false) => {
   const happyPackConfig = {
     id,
-    threads: os.cpus().length,
+    threads,
     loaders:
       env === "prod"
         ? [
@@ -110,7 +113,7 @@ const getCssHappyPack = (id = "css", env, cssModules = false) => {
 const getSassHappyPack = (id = "sass", env, cssModules = false) => {
   const happyPackConfig = {
     id,
-    threads: os.cpus().length,
+    threads,
     loaders:
       env === "prod"
         ? [
@@ -173,7 +176,7 @@ const getSassHappyPack = (id = "sass", env, cssModules = false) => {
 const getLessHappyPack = (id = "less", env, cssModules = false) => {
   const happyPackConfig = {
     id,
-    threads: os.cpus().length,
+    threads,
     loaders:
       env === "prod"
         ? [

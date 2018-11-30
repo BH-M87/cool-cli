@@ -4,7 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
-### v0.2.16  
+### v0.2.18  
+1. Support set `chunkHash` in `.cool.config.js` to config the chunkHash for bundled files (js & css).  
+   Set `true` or `false` to add the chunkHash or not. Or pass a `Number` to set the number of the chunkHash.
+2. Change happyPack threads to `os.cpus().length - 1`, keep 1 thread remain for management thread.
+
+### v0.2.17  
 Remove `publicPath` config in `output`, using relative path.
 
 ### v0.2.16  

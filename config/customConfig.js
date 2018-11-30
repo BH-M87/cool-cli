@@ -46,7 +46,8 @@ const customArgv = _.pick(argv, [
   "prodHtmlTemplate",
   "bundleLibrary",
   "library",
-  "libraryTarget"
+  "libraryTarget",
+  "chunkHash"
 ]);
 
 _.assign(customConfig, customArgv);
