@@ -184,7 +184,9 @@ const prodDefaultConfig = {
           options: {
             limit: 8192,
             context: srcPath,
-            name: "[path][name].[hash:12].[ext]"
+            name: `[path][name]${
+              chunkHash ? `.[hash:${chunkHash === true ? 8 : chunkHash}]` : ""
+            }.[ext]`
           }
         },
         exclude: /node_modules/

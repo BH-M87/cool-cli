@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v0.2.19  
+Add `chunkHash` config to `/\.(jpe?g|png|gif)$/i` files.
+
 ### v0.2.18  
 1. Support set `chunkHash` in `.cool.config.js` to config the chunkHash for bundled files (js & css).  
    Set `true` or `false` to add the chunkHash or not. Or pass a `Number` to set the number of the chunkHash.
