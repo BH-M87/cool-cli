@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-'use strict';
+"use strict";
 
-const spawn = require('cross-spawn');
-const chalk = require('chalk');
+const spawn = require("cross-spawn");
+const chalk = require("chalk");
 
 const script = process.argv[2];
 const args = process.argv.slice(3);
@@ -22,17 +22,18 @@ const run = script => {
     at Function.Module.runMain (module.js:701:10)
     at startup (bootstrap_node.js:194:16) */
   const result = spawn.sync(
-    'node',
+    "node",
     [require.resolve(`../scripts/${script}`)].concat(args),
-    { stdio: 'inherit' }
+    { stdio: "inherit" }
   );
   process.exit(result.status);
 };
 
 function execute() {
   switch (script) {
-    case 'start':
-    case 'build':
+    case "start":
+    case "build":
+    case "init":
       run(script);
       break;
     default:

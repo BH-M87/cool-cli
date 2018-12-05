@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v0.3.0  
+Add new function, `cool-cli init` to init project.
+
 ### v0.2.19  
 Add `chunkHash` config to `/\.(jpe?g|png|gif)$/i` files.
 
