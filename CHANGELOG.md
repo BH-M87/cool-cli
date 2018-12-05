@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v0.3.1  
+Add `preinit` script, to install `yoeman` and `generator-cool` before `init`.
+
 ### v0.3.0  
 Add new function, `cool-cli init` to init project.
 

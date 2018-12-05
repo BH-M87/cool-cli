@@ -34,6 +34,7 @@ function execute() {
     case "start":
     case "build":
     case "init":
+    case "preinit":
       run(script);
       break;
     default:
