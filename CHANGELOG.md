@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.0.0  
+Help info complete!!!
+
 ### v0.3.1  
 Add `preinit` script, to install `yoeman` and `generator-cool` before `init`.
 
@@ -76,7 +79,7 @@ Using `svg-url-loader` to load svg instead of `url-loader`.
 > 3. Browser parses utf-8 encoded string faster than its base64 equivalent.
 
 ### v0.2.3  
-Add `.cool.config.js` to support some customize require. For now, add cssModules option, set to `true` to open css modules, default value is `false`.  
+Add `.cool.config.js` to support some customize require. For now, add `cssModules` option, set to `true` to open css modules, default value is `false`.  
 ```
 module.exports = {
   cssModules: true,

@@ -2,18 +2,35 @@
 
 const exec = require("child_process").execSync;
 const chalk = require("chalk");
+const { onHelp, consolePreinitHelp } = require("../utils/consoleHelp");
+
+const { status, argv } = onHelp(consolePreinitHelp, ["tnpm", "cnpm"]);
+if (status) {
+  return;
+}
+
+const getNpmType = () => {
+  if (argv.tnpm) {
+    return "tnpm";
+  } else if (argv.cnpm) {
+    return "cnpm";
+  }
+  return "npm";
+};
 
 function preinit() {
   console.log(
     chalk.magenta(
-      "Install ",
+      "Install",
       chalk.underline.bgWhite.bold("yoeman"),
-      " & ",
+      "&",
       chalk.underline.bgWhite.bold("generator-cool"),
-      " first before init."
+      "using",
+      getNpmType(),
+      "first before init."
     )
   );
-  exec("npm install -g yo generator-cool", {
+  exec(`${getNpmType()} install -g yo generator-cool`, {
     stdio: "inherit"
   });
 }

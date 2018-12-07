@@ -8,7 +8,7 @@ const {
 } = require("./paths");
 const fs = require("fs-extra");
 const _ = require("lodash");
-const argv = require("yargs").argv;
+const { argv } = require("yargs");
 
 let customConfig = {};
 let devCustomConfig = {};

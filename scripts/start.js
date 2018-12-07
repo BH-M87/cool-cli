@@ -1,12 +1,25 @@
-'use strict';
+"use strict";
 
-const chalk = require('chalk');
-const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
-const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-const portfinder = require('portfinder');
-const mock = require('../utils/mock');
-const webpackConfig = require('../config/devConfig');
+const chalk = require("chalk");
+const formatWebpackMessages = require("react-dev-utils/formatWebpackMessages");
+const webpack = require("webpack");
+const WebpackDevServer = require("webpack-dev-server");
+const portfinder = require("portfinder");
+const mock = require("../utils/mock");
+const webpackConfig = require("../config/devConfig");
+const { onHelp, consoleStartHelp } = require("../utils/consoleHelp");
+
+const { status } = onHelp(consoleStartHelp, [
+  "cssModules",
+  "devHtmlTemplate",
+  "bundleLibrary",
+  "library",
+  "libraryTarget",
+  "chunkHash"
+]);
+if (status) {
+  return;
+}
 
 const devServerConfig = webpackConfig.devServer;
 
@@ -15,18 +28,18 @@ function compile() {
   try {
     compiler = webpack(webpackConfig);
   } catch (err) {
-    console.log(chalk.red('Failed to initialize compile.'));
+    console.log(chalk.red("Failed to initialize compile."));
     console.log(err.message || err);
     process.exit(1);
   }
 
-  compiler.plugin('done', stats => {
+  compiler.plugin("done", stats => {
     const messages = formatWebpackMessages(stats.toJson({}, true));
 
     if (!messages.errors.length && !messages.warnings.length) {
-      console.log(chalk.green('Compile finished successfully!'));
+      console.log(chalk.green("Compile finished successfully!"));
     } else if (messages.errors.length) {
-      console.log(chalk.red('Failed to compile.'));
+      console.log(chalk.red("Failed to compile."));
       messages.errors.forEach(message => {
         console.log(message);
       });
