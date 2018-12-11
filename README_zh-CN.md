@@ -75,9 +75,6 @@
    >   --library                        set the library name you want to export.
    > 
    >   --libraryTarget             set the libray target type, default 'umd'.
-   > 
-   >   --chunkHash               set true or false to add the chunkHash or not.
-   > ​                                         or pass a Number to set the number of the chunkHash.
 
 5. `cool-cli build`
    > 打包发布，支持打包成生产环境部署包，或者加上`library`参数，打包发布成npm独立包。
@@ -94,11 +91,12 @@
    > 
    >   --bundleLibrary            bundle your project into library
    > 
-   >   --library                          set the library name you want to export.
+   >   --library                          set the library name you want to export
    > 
-   >   --libraryTarget               set the libray target type, default 'umd'.
+   >   --libraryTarget               set the libray target type, default 'umd'
    > 
-   >   --chunkHash                 set true or false to add the chunkHash or not.
-   > ​                                           or pass a Number to set the number of the chunkHash.
+   >   --hashDigestLength     pass a Number to set the number of the chunkHash, or set 0 to close the hash
+   >
+   >   --bundleAnalyze           visualize size of webpack output files with an interactive 
 
 ***Happy Coding!!!***

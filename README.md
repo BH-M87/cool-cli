@@ -54,41 +54,39 @@ We usually put our webpack configuration in our own project with popular project
    > Options:
    > 
    >   -V, --version                output the version number
-   >   
+   > 
    >   -h, --help                     output usage information
-   >   
+   > 
    >   --cssModules              turn on the css modules, default to false
-   >   
+   > 
    >   --devHtmlTemplate   change the dev template loaction and name,
    > ​                                       or even set false to close the html-webpack-plugin function
    > 
    >   --bundleLibrary          bundle your project into library
-   >   
-   >   --library                        set the library name you want to export.
-   >   
-   >   --libraryTarget             set the libray target type, default 'umd'.
-   >   
-   >   --chunkHash               set true or false to add the chunkHash or not.
-   > ​                                       or pass a Number to set the number of the chunkHash.
+   > 
+   >   --library                        set the library name you want to export
+   > 
+   >   --libraryTarget             set the libray target type, default 'umd'
 
 5. `cool-cli build`
    > Options:
    >   -V, --version                  output the version number
-   >   
+   >
    >   -h, --help                       output usage information
-   >   
+   >
    >   --cssModules                turn on the css modules, default to false
-   >   
+   >
    >   --prodHtmlTemplate   change the prod template loaction and name,
-   > ​                                         or even set false to close the html-webpack-plugin function
-   > 
+   > ​                                          or even set false to close the html-webpack-plugin function
+   >
    >   --bundleLibrary            bundle your project into library
-   >   
-   >   --library                          set the library name you want to export.
-   >   
-   >   --libraryTarget               set the libray target type, default 'umd'.
-   >   
-   >   --chunkHash                 set true or false to add the chunkHash or not.
-   > ​                                         or pass a Number to set the number of the chunkHash.
+   >
+   >   --library                          set the library name you want to export
+   >
+   >   --libraryTarget               set the libray target type, default 'umd'
+   >
+   >   --hashDigestLength     pass a Number to set the number of the chunkHash, or set 0 to close the hash
+   >
+   >   --bundleAnalyze           visualize size of webpack output files with an interactive zoomable treemap, default false
 
 ***Happy Coding!!!***

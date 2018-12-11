@@ -47,7 +47,8 @@ const customArgv = _.pick(argv, [
   "bundleLibrary",
   "library",
   "libraryTarget",
-  "chunkHash"
+  "hashDigestLength",
+  "bundleAnalyze"
 ]);
 
 _.assign(customConfig, customArgv);

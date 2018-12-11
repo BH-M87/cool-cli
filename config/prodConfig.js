@@ -5,6 +5,8 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 const fs = require("fs-extra");
 const path = require("path");
 const _ = require("lodash");
@@ -34,7 +36,8 @@ const {
   bundleLibrary = false,
   library = packageJsonConfig.name,
   libraryTarget,
-  chunkHash = true
+  hashDigestLength = 8,
+  bundleAnalyze = false
 } = customConfig;
 
 const prodDefaultConfig = {
@@ -57,10 +60,10 @@ const prodDefaultConfig = {
     : {
         path: buildPath,
         filename: `[name]${
-          chunkHash ? `.[chunkhash:${chunkHash === true ? 8 : chunkHash}]` : ""
+          hashDigestLength > 0 ? `.[chunkhash:${hashDigestLength}]` : ""
         }.js`,
         chunkFilename: `[name]${
-          chunkHash ? `.[chunkhash:${chunkHash === true ? 8 : chunkHash}]` : ""
+          hashDigestLength > 0 ? `.[chunkhash:${hashDigestLength}]` : ""
         }.js`,
         crossOriginLoading: "anonymous"
       },
@@ -71,9 +74,9 @@ const prodDefaultConfig = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: `[name]${
-        bundleLibrary || !chunkHash
+        bundleLibrary || hashDigestLength === 0
           ? ""
-          : `.[hash:${chunkHash === true ? 8 : chunkHash}]`
+          : `.[hash:${hashDigestLength}]`
       }.css`
     }),
     new UglifyJSPlugin({
@@ -185,7 +188,7 @@ const prodDefaultConfig = {
             limit: 8192,
             context: srcPath,
             name: `[path][name]${
-              chunkHash ? `.[hash:${chunkHash === true ? 8 : chunkHash}]` : ""
+              hashDigestLength > 0 ? `.[hash:${hashDigestLength}]` : ""
             }.[ext]`
           }
         },
@@ -223,6 +226,10 @@ if (providePluginConfig) {
   prodDefaultConfig.plugins.push(
     new webpack.ProvidePlugin(providePluginConfig)
   );
+}
+// Visualize size of webpack output files with an interactive zoomable treemap.
+if (bundleAnalyze) {
+  prodDefaultConfig.plugins.push(new BundleAnalyzerPlugin());
 }
 // add CopyWebpackPlugin
 if (fs.existsSync(staticPath)) {

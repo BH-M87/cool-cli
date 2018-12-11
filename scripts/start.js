@@ -14,8 +14,7 @@ const { status } = onHelp(consoleStartHelp, [
   "devHtmlTemplate",
   "bundleLibrary",
   "library",
-  "libraryTarget",
-  "chunkHash"
+  "libraryTarget"
 ]);
 if (status) {
   return;

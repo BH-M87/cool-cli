@@ -13,7 +13,8 @@ const { status } = onHelp(consoleBuildHelp, [
   "bundleLibrary",
   "library",
   "libraryTarget",
-  "chunkHash"
+  "hashDigestLength",
+  "bundleAnalyze"
 ]);
 if (status) {
   return;

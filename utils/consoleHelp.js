@@ -105,16 +105,10 @@ Options:
                         "false"
                       )} to close the html-webpack-plugin function
   --bundleLibrary     bundle your project into library
-  --library           set the library name you want to export.
+  --library           set the library name you want to export
   --libraryTarget     set the libray target type, default ${chalk.underline(
     `'umd'`
-  )}.
-  --chunkHash         set ${chalk.underline("true")} or ${chalk.underline(
-      "false"
-    )} to add the chunkHash or not. 
-                      or pass a ${chalk.underline(
-                        "Number"
-                      )} to set the number of the chunkHash.
+  )}
 `
   );
 }
@@ -133,16 +127,18 @@ Options:
                         "false"
                       )} to close the html-webpack-plugin function
   --bundleLibrary     bundle your project into library
-  --library           set the library name you want to export.
+  --library           set the library name you want to export
   --libraryTarget     set the libray target type, default ${chalk.underline(
     `'umd'`
-  )}.
-  --chunkHash         set ${chalk.underline("true")} or ${chalk.underline(
-      "false"
-    )} to add the chunkHash or not. 
-                      or pass a ${chalk.underline(
-                        "Number"
-                      )} to set the number of the chunkHash.
+  )}
+  --hashDigestLength  pass a ${chalk.underline(
+    "Number"
+  )} to set the digest length of the hash, or set to ${chalk.underline(
+      0
+    )} to disable the hash
+  --bundleAnalyze     visualize size of webpack output files with an interactive zoomable treemap, default ${chalk.underline(
+    "false"
+  )}
 `
   );
 }
