@@ -9,7 +9,7 @@ All notable changes to this project will be documented in this file.
 2. Add `bundleAnalyze` config, set to `true` to active visualize size of webpack output files with an interactive zoomable treemap. Default to `false`.
 3. Add `notOpenBrowser` config, set to `true` to prevent auto open browser after server start. Default `false`.
 
-### v1.0.0  
+### ~~v1.0.0(deprecate)~~  
 Help info complete!!!
 
 ### v0.3.1  
