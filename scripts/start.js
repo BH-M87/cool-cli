@@ -5,8 +5,12 @@ const formatWebpackMessages = require("react-dev-utils/formatWebpackMessages");
 const webpack = require("webpack");
 const WebpackDevServer = require("webpack-dev-server");
 const portfinder = require("portfinder");
+const opener = require("opener");
 const mock = require("../utils/mock");
 const webpackConfig = require("../config/devConfig");
+const {
+  customConfig: { notOpenBrowser = false }
+} = require("../config/customConfig");
 const { onHelp, consoleStartHelp } = require("../utils/consoleHelp");
 
 const { status } = onHelp(consoleStartHelp, [
@@ -14,13 +18,16 @@ const { status } = onHelp(consoleStartHelp, [
   "devHtmlTemplate",
   "bundleLibrary",
   "library",
-  "libraryTarget"
+  "libraryTarget",
+  "notOpenBrowser"
 ]);
 if (status) {
   return;
 }
 
 const devServerConfig = webpackConfig.devServer;
+let port = Number(devServerConfig.port);
+let isFirstCompile = true;
 
 function compile() {
   let compiler;
@@ -31,12 +38,18 @@ function compile() {
     console.log(err.message || err);
     process.exit(1);
   }
-
-  compiler.plugin("done", stats => {
+  compiler.hooks.done.tap("compilerDone", stats => {
     const messages = formatWebpackMessages(stats.toJson({}, true));
 
     if (!messages.errors.length && !messages.warnings.length) {
-      console.log(chalk.green("Compile finished successfully!"));
+      if (isFirstCompile) {
+        const url = `http://${devServerConfig.host}:${port}/`;
+        console.log(`The app is running at: ${chalk.cyan(url)}`);
+        if (!notOpenBrowser) {
+          opener(url);
+        }
+        isFirstCompile = false;
+      }
     } else if (messages.errors.length) {
       console.log(chalk.red("Failed to compile."));
       messages.errors.forEach(message => {
@@ -50,32 +63,25 @@ function compile() {
 function run() {
   const compiler = compile();
   const devServer = new WebpackDevServer(compiler, devServerConfig);
-
   mock(devServer);
 
-  const basePort = Number(devServerConfig.port);
+  // promise
   portfinder
-    .getPortPromise({ port: basePort })
-    .then(port => {
+    .getPortPromise({ port })
+    .then(newPort => {
       // Will use devServerConfig.port if available, otherwise fall back to a random port
-      devServer.listen(port, devServerConfig.host, err => {
+      devServer.listen(newPort, devServerConfig.host, err => {
         if (err) {
           return console.log(chalk.red(err));
         }
-
-        if (Number(port) !== Number(basePort)) {
+        if (port !== newPort) {
           console.log(
             chalk.magenta(
-              `Port ${basePort} is occupied, assign new port ${port}.`
+              `Port ${port} is occupied, assign new port ${newPort}.`
             )
           );
+          port = newPort;
         }
-
-        console.log(
-          `The app is running at: ${chalk.cyan(
-            `http://${devServerConfig.host}:${port}/`
-          )}`
-        );
       });
     })
     .catch(err => {

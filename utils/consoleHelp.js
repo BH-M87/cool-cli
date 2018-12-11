@@ -109,6 +109,7 @@ Options:
   --libraryTarget     set the libray target type, default ${chalk.underline(
     `'umd'`
   )}
+  --notOpenBrowser    not open browser after server start
 `
   );
 }

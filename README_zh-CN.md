@@ -75,6 +75,8 @@
    >   --library                        set the library name you want to export.
    > 
    >   --libraryTarget             set the libray target type, default 'umd'.
+   >
+   >   --notOpenBrowser     not open browser after server start
 
 5. `cool-cli build`
    > 打包发布，支持打包成生产环境部署包，或者加上`library`参数，打包发布成npm独立包。

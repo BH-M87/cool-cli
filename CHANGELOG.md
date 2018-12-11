@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### v1.0.1  
 1. Change config `chunkHash` to `hashDigestLength`, default 8. Or set 0 to close the hash.  
-2. Add `bundleAnalyze` config, set to true to active visualize size of webpack output files with an interactive zoomable treemap. Default to `false`.
+2. Add `bundleAnalyze` config, set to `true` to active visualize size of webpack output files with an interactive zoomable treemap. Default to `false`.
+3. Add `notOpenBrowser` config, set to `true` to prevent auto open browser after server start. Default `false`.
 
 ### v1.0.0  
 Help info complete!!!

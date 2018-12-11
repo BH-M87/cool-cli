@@ -41,6 +41,7 @@ if (fs.existsSync(prodCustomConfigPath)) {
 
 // process argv
 const customArgv = _.pick(argv, [
+  "notOpenBrowser",
   "cssModules",
   "devHtmlTemplate",
   "prodHtmlTemplate",

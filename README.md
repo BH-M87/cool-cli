@@ -67,6 +67,8 @@ We usually put our webpack configuration in our own project with popular project
    >   --library                        set the library name you want to export
    > 
    >   --libraryTarget             set the libray target type, default 'umd'
+   >
+   >   --notOpenBrowser     not open browser after server start
 
 5. `cool-cli build`
    > Options:
