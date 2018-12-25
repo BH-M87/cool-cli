@@ -4,7 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
-### v1.1.0  
+### v1.1.1  
+Fix following error:  
+> Uncaught Error: Decorating class property failed. Please ensure that proposal-class-properties is enabled and set to use loose mode. To use proposal-class-properties in spec mode with decorators, wait for the next major version of decorators in stage 2.  
+> For detail please check: http://2ality.com/2012/08/property-definition-assignment.html
+
+### ~~v1.1.0(deprecate)~~  
 `babel-loader` upgrade to `^8.0.4`.
 
 ### v1.0.2  

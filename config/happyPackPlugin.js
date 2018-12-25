@@ -57,7 +57,7 @@ const getJsHappyPack = (id = "js", env) => {
       require.resolve("@babel/plugin-syntax-import-meta"),
       [
         require.resolve("@babel/plugin-proposal-class-properties"),
-        { loose: false }
+        { loose: true }
       ],
       require.resolve("@babel/plugin-proposal-json-strings")
     ];
