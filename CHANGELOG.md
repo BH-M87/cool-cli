@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.1.0  
+`babel-loader` upgrade to `^8.0.4`.
+
 ### v1.0.2  
 Update `resolveLoader` config.
 
