@@ -8,7 +8,6 @@ const HtmlPlugin = require("html-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 const fs = require("fs-extra");
-const path = require("path");
 const _ = require("lodash");
 const {
   srcPath,
@@ -70,6 +69,9 @@ const prodDefaultConfig = {
   resolve: {
     modules: ["node_modules", nodeModulesPath, srcPath],
     extensions: [".js", ".json", ".jsx"]
+  },
+  resolveLoader: {
+    modules: ["node_modules", nodeModulesPath]
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -210,9 +212,6 @@ const prodDefaultConfig = {
         use: "file-loader?name=[name].[ext]"
       }
     ]
-  },
-  resolveLoader: {
-    modules: [path.resolve(__dirname, "..", "node_modules")]
   }
 };
 

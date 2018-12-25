@@ -4,7 +4,6 @@ const webpack = require("webpack");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
 const fs = require("fs-extra");
-const path = require("path");
 const _ = require("lodash");
 const { srcPath, buildPath, nodeModulesPath, staticPath } = require("./paths");
 const { customConfig, devCustomConfig } = require("./customConfig");
@@ -40,6 +39,9 @@ const devDefaultConfig = {
   resolve: {
     modules: ["node_modules", nodeModulesPath, srcPath],
     extensions: [".js", ".json", ".jsx"]
+  },
+  resolveLoader: {
+    modules: ["node_modules", nodeModulesPath]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -168,12 +170,9 @@ const devDefaultConfig = {
       }
     ]
   },
-  resolveLoader: {
-    modules: [path.resolve(__dirname, "..", "node_modules")]
-  },
   devServer: {
     host: "127.0.0.1",
-    port: "8000",
+    port: 8001,
     proxy: {},
     compress: true,
     contentBase: buildPath,
