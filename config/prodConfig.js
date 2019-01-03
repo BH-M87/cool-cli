@@ -96,7 +96,7 @@ const prodDefaultConfig = {
   module: {
     rules: [
       {
-        test: /\.(jsx|js)?$/,
+        test: /\.(jsx|js)?$/i,
         oneOf: [
           {
             resourceQuery: /es6/,
@@ -109,7 +109,7 @@ const prodDefaultConfig = {
         ]
       },
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         oneOf: [
           {
             resourceQuery: /global/,
@@ -121,7 +121,7 @@ const prodDefaultConfig = {
         ]
       },
       {
-        test: /\.(scss|sass)$/,
+        test: /\.(scss|sass)$/i,
         oneOf: [
           {
             resourceQuery: /global/,
@@ -133,7 +133,7 @@ const prodDefaultConfig = {
         ]
       },
       {
-        test: /\.less$/,
+        test: /\.less$/i,
         oneOf: [
           {
             resourceQuery: /global/,
@@ -145,16 +145,15 @@ const prodDefaultConfig = {
         ]
       },
       {
-        test: /\.*$/,
         resourceQuery: /external/,
-        loader: "file-loader"
+        loader: "file-loader?name=[name].[ext]"
       },
       {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/i,
         use: "file-loader"
       },
       {
-        test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/i,
         use: {
           loader: "url-loader",
           options: {
@@ -165,7 +164,7 @@ const prodDefaultConfig = {
         }
       },
       {
-        test: /\.(ttf|otf)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(ttf|otf)(\?v=\d+\.\d+\.\d+)?$/i,
         use: {
           loader: "url-loader",
           options: {
@@ -176,7 +175,7 @@ const prodDefaultConfig = {
         }
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/,
+        test: /\.(jpe?g|png|gif|svg|ttf|eot)(\?\w*=\w*)?$/i,
         use: {
           loader: "file-loader"
         },
@@ -197,7 +196,7 @@ const prodDefaultConfig = {
         exclude: /node_modules/
       },
       {
-        test: /\.svg$/,
+        test: /\.svg$/i,
         use: {
           loader: "svg-url-loader",
           options: {
@@ -208,8 +207,10 @@ const prodDefaultConfig = {
         exclude: /node_modules/
       },
       {
-        test: /\.swf$/,
-        use: "file-loader?name=[name].[ext]"
+        test: /\.(swf|csv|xl[st]x?|docx?)$/i,
+        use: `file-loader?name=[name]${
+          hashDigestLength > 0 ? `.[hash:${hashDigestLength}]` : ""
+        }.[ext]`
       }
     ]
   }

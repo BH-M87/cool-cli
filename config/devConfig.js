@@ -56,7 +56,7 @@ const devDefaultConfig = {
   module: {
     rules: [
       {
-        test: /\.(jsx|js)?$/,
+        test: /\.(jsx|js)?$/i,
         oneOf: [
           {
             resourceQuery: /es6/,
@@ -69,7 +69,7 @@ const devDefaultConfig = {
         ]
       },
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         oneOf: [
           {
             resourceQuery: /global/,
@@ -81,7 +81,7 @@ const devDefaultConfig = {
         ]
       },
       {
-        test: /\.(scss|sass)$/,
+        test: /\.(scss|sass)$/i,
         oneOf: [
           {
             resourceQuery: /global/,
@@ -93,7 +93,7 @@ const devDefaultConfig = {
         ]
       },
       {
-        test: /\.less$/,
+        test: /\.less$/i,
         oneOf: [
           {
             resourceQuery: /global/,
@@ -105,16 +105,15 @@ const devDefaultConfig = {
         ]
       },
       {
-        test: /\.*$/,
         resourceQuery: /external/,
+        loader: "file-loader?name=[name].[ext]"
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/i,
         loader: "file-loader"
       },
       {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "file-loader"
-      },
-      {
-        test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/i,
         use: {
           loader: "url-loader",
           options: {
@@ -125,7 +124,7 @@ const devDefaultConfig = {
         }
       },
       {
-        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/i,
         use: {
           loader: "url-loader",
           options: {
@@ -136,7 +135,7 @@ const devDefaultConfig = {
         }
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/,
+        test: /\.(jpe?g|png|gif|svg|ttf|eot)(\?\w*=\w*)?$/i,
         use: {
           loader: "file-loader"
         },
@@ -154,7 +153,7 @@ const devDefaultConfig = {
         exclude: /node_modules/
       },
       {
-        test: /\.svg$/,
+        test: /\.svg$/i,
         use: {
           loader: "svg-url-loader",
           options: {
@@ -165,7 +164,8 @@ const devDefaultConfig = {
         exclude: /node_modules/
       },
       {
-        test: /\.swf$/,
+        test: /\.(swf|csv|xl[st]x?|docx?)$/i,
+        exclude: /node_modules/,
         use: "file-loader?name=[name].[ext]"
       }
     ]

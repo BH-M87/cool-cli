@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.1.3  
+1. Add `rules` in webpack `module` config: using `file-loader` for swf, csv, xls, xlsx, xlt, xltx, doc, docx files. PS: `/\.(swf|csv|xl[st]x?|docx?)$/i`
+
 ### v1.1.2  
 Add dependency `babel-eslint`.
 
