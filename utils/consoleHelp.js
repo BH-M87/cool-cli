@@ -70,11 +70,11 @@ function consoleInitHelp() {
     `Usage:  cool-cli init [options]
 
 Options:
-  -V, --version  output the version number
-  -h, --help     output usage information
-  -p, --preinit  install yoeman and generator-cool before init
-  -c, --cnpm     install yoeman and generator-cool using cnpm, default npm
-  -t, --tnpm     install yoeman and generator-cool using tnpm, default npm
+  -V, --version      output the version number
+  -h, --help         output usage information
+  -s, --skipupdate   skip update yoeman and generator-cool
+  -c, --cnpm         install yoeman and generator-cool using cnpm, default npm
+  -t, --tnpm         install yoeman and generator-cool using tnpm, default npm
 `
   );
 }

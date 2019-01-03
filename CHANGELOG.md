@@ -7,7 +7,8 @@ All notable changes to this project will be documented in this file.
 ### v1.1.3  
 1. Add `rules` in webpack `module` config: using `file-loader` for swf, csv, xls, xlsx, xlt, xltx, doc, docx files. PS: `/\.(swf|csv|xl[st]x?|docx?)$/i`.  
 2. Fix a bug when `cool-cli -v`, should get version from cool-cli `package.json`.  
-3. Add `update-notifier` to check update for `cool-cli`.
+3. Add `update-notifier` to check update for `cool-cli`.  
+4. Add `-s --skipupdate` to `cool-cli init` command, remove `-p --preinit`, set `true` to skip update yoeman and generator-cool.
 
 ### v1.1.2  
 Add dependency `babel-eslint`.

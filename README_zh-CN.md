@@ -33,15 +33,15 @@
    > 
    > Options:
    >
-   >   -V, --version  output the version number
+   >   -V, --version          output the version number
    >
-   >   -h, --help       output usage information
+   >   -h, --help               output usage information
    >
-   >   -p, --preinit   install yoeman and generator-cool before init
+   >   -s, --skipupdate    skip update yoeman and generator-cool
    >
-   >   -c, --cnpm     install yoeman and generator-cool using cnpm, default npm
+   >   -c, --cnpm              install yoeman and generator-cool using cnpm, default npm
    >
-   >   -t, --tnpm      install yoeman and generator-cool using tnpm, default npm
+   >   -t, --tnpm               install yoeman and generator-cool using tnpm, default npm
 
 3. `cool-cli preinit`
    > 全局安装一键生成新项目的前置依赖，`yo` & `generator-cool`

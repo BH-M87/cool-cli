@@ -5,13 +5,17 @@ const chalk = require("chalk");
 const runScript = require("../utils/runScript");
 const { onHelp, consoleInitHelp } = require("../utils/consoleHelp");
 
-const { status, argv } = onHelp(consoleInitHelp, ["preinit"]);
+const { status, argv } = onHelp(consoleInitHelp, [
+  "skipupdate",
+  "tnpm",
+  "cnpm"
+]);
 if (status) {
   return;
 }
 
 function init() {
-  if (argv.preinit) {
+  if (!argv.skipupdate) {
     const preinitArgv = [];
     if (argv.tnpm) {
       preinitArgv.push("--tnpm");

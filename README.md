@@ -28,15 +28,15 @@ We usually put our webpack configuration in our own project with popular project
 2. `cool-cli init`
    > Options:
    >
-   >   -V, --version  output the version number
+   >   -V, --version          output the version number
    >
-   >   -h, --help       output usage information
+   >   -h, --help               output usage information
    >
-   >   -p, --preinit   install yoeman and generator-cool before init
+   >   -s, --skipupdate    skip update yoeman and generator-cool
    >
-   >   -c, --cnpm     install yoeman and generator-cool using cnpm, default npm
+   >   -c, --cnpm              install yoeman and generator-cool using cnpm, default npm
    >
-   >   -t, --tnpm      install yoeman and generator-cool using tnpm, default npm
+   >   -t, --tnpm               install yoeman and generator-cool using tnpm, default npm
 
 3. `cool-cli preinit`
 
