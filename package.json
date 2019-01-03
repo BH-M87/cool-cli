@@ -93,6 +93,7 @@
     "style-loader": "^0.21.0",
     "svg-url-loader": "^2.3.2",
     "uglifyjs-webpack-plugin": "^1.2.7",
+    "update-notifier": "^2.5.0",
     "url": "^0.11.0",
     "url-loader": "^1.0.1",
     "webpack": "^4.16.0",

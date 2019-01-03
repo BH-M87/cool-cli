@@ -5,6 +5,7 @@
 const chalk = require("chalk");
 const { consoleVersion, consoleHelp } = require("../utils/consoleHelp");
 const runScript = require("../utils/runScript");
+const checkUpdate = require("../utils/checkUpdate");
 
 const script = process.argv[2];
 const args = process.argv.slice(3);
@@ -41,4 +42,5 @@ function execute() {
   }
 }
 
+checkUpdate();
 execute();
