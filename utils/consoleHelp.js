@@ -2,7 +2,7 @@
 
 const chalk = require("chalk");
 const argv = require("yargs").argv;
-const { packageJsonConfig } = require("../config/customConfig");
+const packageJsonConfig = require("../package.json");
 
 const { version, description } = packageJsonConfig;
 
