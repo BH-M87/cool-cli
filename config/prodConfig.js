@@ -3,7 +3,6 @@
 const webpack = require("webpack");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
@@ -73,6 +72,14 @@ const prodDefaultConfig = {
   resolveLoader: {
     modules: ["node_modules", nodeModulesPath]
   },
+  optimization: bundleLibrary
+    ? undefined
+    : {
+        splitChunks: {
+          chunks: "initial"
+        },
+        runtimeChunk: true
+      },
   plugins: [
     new MiniCssExtractPlugin({
       filename: `[name]${
@@ -80,10 +87,6 @@ const prodDefaultConfig = {
           ? ""
           : `.[hash:${hashDigestLength}]`
       }.css`
-    }),
-    new UglifyJSPlugin({
-      parallel: true,
-      sourceMap: false
     }),
     getJsHappyPack("js", "prod"),
     getCssHappyPack("css", "prod", cssModules),

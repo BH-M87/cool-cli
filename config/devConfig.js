@@ -43,6 +43,12 @@ const devDefaultConfig = {
   resolveLoader: {
     modules: ["node_modules", nodeModulesPath]
   },
+  optimization: {
+    splitChunks: {
+      chunks: "initial"
+    },
+    runtimeChunk: true
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     getJsHappyPack("js", "dev"),

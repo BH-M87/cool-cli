@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.1.4  
+1. Add `pkg.optimization.splitChunks` and `pkg.optimization.runtimeChunks` config when not bundling library.  
+2. Remove `uglifyjs-webpack-plugin`, using `TerserWebpackPlugin` instead;
+
 ### v1.1.3  
 1. Add `rules` in webpack `module` config: using `file-loader` for swf, csv, xls, xlsx, xlt, xltx, doc, docx files. PS: `/\.(swf|csv|xl[st]x?|docx?)$/i`.  
 2. Fix a bug when `cool-cli -v`, should get version from cool-cli `package.json`.  
