@@ -1,36 +1,36 @@
-"use strict";
+'use strict';
 
-const webpack = require("webpack");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlPlugin = require("html-webpack-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
-const fs = require("fs-extra");
-const _ = require("lodash");
+const fs = require('fs-extra');
+const _ = require('lodash');
 const {
   srcPath,
   buildPath,
   distPath,
   nodeModulesPath,
   staticPath
-} = require("./paths");
+} = require('./paths');
 const {
   packageJsonConfig,
   customConfig,
   prodCustomConfig,
   providePluginConfig
-} = require("./customConfig");
+} = require('./customConfig');
 const {
   getJsHappyPack,
   getCssHappyPack,
   getSassHappyPack,
   getLessHappyPack
-} = require("./happyPackPlugin");
+} = require('./happyPackPlugin');
 
 const {
   cssModules = false,
-  prodHtmlTemplate = "./index.html",
+  prodHtmlTemplate = './index.html',
   bundleLibrary = false,
   library = packageJsonConfig.name,
   libraryTarget,
@@ -39,62 +39,63 @@ const {
 } = customConfig;
 
 const prodDefaultConfig = {
-  mode: "production",
+  mode: 'production',
   bail: true,
   context: srcPath,
   devtool: false,
-  entry: "./index",
+  entry: './index',
   externals: {},
   output: bundleLibrary
     ? {
         path: distPath,
-        filename: "[name].js",
-        chunkFilename: "[name].js",
-        crossOriginLoading: "anonymous",
+        filename: '[name].js',
+        chunkFilename: '[name].js',
+        crossOriginLoading: 'anonymous',
         library,
         libraryTarget:
-          libraryTarget || (bundleLibrary === true ? "umd" : bundleLibrary)
+          libraryTarget || (bundleLibrary === true ? 'umd' : bundleLibrary)
       }
     : {
         path: buildPath,
         filename: `[name]${
-          hashDigestLength > 0 ? `.[chunkhash:${hashDigestLength}]` : ""
+          hashDigestLength > 0 ? `.[chunkhash:${hashDigestLength}]` : ''
         }.js`,
         chunkFilename: `[name]${
-          hashDigestLength > 0 ? `.[chunkhash:${hashDigestLength}]` : ""
+          hashDigestLength > 0 ? `.[chunkhash:${hashDigestLength}]` : ''
         }.js`,
-        crossOriginLoading: "anonymous"
+        crossOriginLoading: 'anonymous'
       },
   resolve: {
-    modules: ["node_modules", nodeModulesPath, srcPath],
-    extensions: [".js", ".json", ".jsx"]
+    modules: ['node_modules', nodeModulesPath, srcPath],
+    extensions: ['.js', '.json', '.jsx']
   },
   resolveLoader: {
-    modules: ["node_modules", nodeModulesPath]
+    modules: ['node_modules', nodeModulesPath]
   },
   optimization: bundleLibrary
     ? undefined
     : {
         splitChunks: {
-          chunks: "initial"
+          chunks: 'initial'
         },
         runtimeChunk: true
       },
   plugins: [
+    new webpack.HashedModuleIdsPlugin(),
     new MiniCssExtractPlugin({
       filename: `[name]${
         bundleLibrary || hashDigestLength === 0
-          ? ""
+          ? ''
           : `.[hash:${hashDigestLength}]`
       }.css`
     }),
-    getJsHappyPack("js", "prod"),
-    getCssHappyPack("css", "prod", cssModules),
-    getSassHappyPack("sass", "prod", cssModules),
-    getLessHappyPack("less", "prod", cssModules),
-    getCssHappyPack("cssGlobal", "prod"),
-    getSassHappyPack("sassGlobal", "prod"),
-    getLessHappyPack("lessGlobal", "prod")
+    getJsHappyPack('js', 'prod'),
+    getCssHappyPack('css', 'prod', cssModules),
+    getSassHappyPack('sass', 'prod', cssModules),
+    getLessHappyPack('less', 'prod', cssModules),
+    getCssHappyPack('cssGlobal', 'prod'),
+    getSassHappyPack('sassGlobal', 'prod'),
+    getLessHappyPack('lessGlobal', 'prod')
   ],
   module: {
     rules: [
@@ -103,10 +104,10 @@ const prodDefaultConfig = {
         oneOf: [
           {
             resourceQuery: /es6/,
-            use: "happypack/loader?id=js"
+            use: 'happypack/loader?id=js'
           },
           {
-            use: "happypack/loader?id=js",
+            use: 'happypack/loader?id=js',
             exclude: /node_modules/
           }
         ]
@@ -116,10 +117,10 @@ const prodDefaultConfig = {
         oneOf: [
           {
             resourceQuery: /global/,
-            use: [MiniCssExtractPlugin.loader, "happypack/loader?id=cssGlobal"]
+            use: [MiniCssExtractPlugin.loader, 'happypack/loader?id=cssGlobal']
           },
           {
-            use: [MiniCssExtractPlugin.loader, "happypack/loader?id=css"]
+            use: [MiniCssExtractPlugin.loader, 'happypack/loader?id=css']
           }
         ]
       },
@@ -128,10 +129,10 @@ const prodDefaultConfig = {
         oneOf: [
           {
             resourceQuery: /global/,
-            use: [MiniCssExtractPlugin.loader, "happypack/loader?id=sassGlobal"]
+            use: [MiniCssExtractPlugin.loader, 'happypack/loader?id=sassGlobal']
           },
           {
-            use: [MiniCssExtractPlugin.loader, "happypack/loader?id=sass"]
+            use: [MiniCssExtractPlugin.loader, 'happypack/loader?id=sass']
           }
         ]
       },
@@ -140,59 +141,59 @@ const prodDefaultConfig = {
         oneOf: [
           {
             resourceQuery: /global/,
-            use: [MiniCssExtractPlugin.loader, "happypack/loader?id=lessGlobal"]
+            use: [MiniCssExtractPlugin.loader, 'happypack/loader?id=lessGlobal']
           },
           {
-            use: [MiniCssExtractPlugin.loader, "happypack/loader?id=less"]
+            use: [MiniCssExtractPlugin.loader, 'happypack/loader?id=less']
           }
         ]
       },
       {
         resourceQuery: /external/,
-        loader: "file-loader?name=[name].[ext]"
+        loader: 'file-loader?name=[name].[ext]'
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/i,
-        use: "file-loader"
+        use: 'file-loader'
       },
       {
         test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/i,
         use: {
-          loader: "url-loader",
+          loader: 'url-loader',
           options: {
             limit: 10000,
             context: srcPath,
-            minetype: "application/font-woff"
+            minetype: 'application/font-woff'
           }
         }
       },
       {
         test: /\.(ttf|otf)(\?v=\d+\.\d+\.\d+)?$/i,
         use: {
-          loader: "url-loader",
+          loader: 'url-loader',
           options: {
             limit: 10000,
             context: srcPath,
-            minetype: "application/octet-stream"
+            minetype: 'application/octet-stream'
           }
         }
       },
       {
         test: /\.(jpe?g|png|gif|svg|ttf|eot)(\?\w*=\w*)?$/i,
         use: {
-          loader: "file-loader"
+          loader: 'file-loader'
         },
         include: /node_modules/
       },
       {
         test: /\.(jpe?g|png|gif)$/i,
         use: {
-          loader: "url-loader",
+          loader: 'url-loader',
           options: {
             limit: 8192,
             context: srcPath,
             name: `[path][name]${
-              hashDigestLength > 0 ? `.[hash:${hashDigestLength}]` : ""
+              hashDigestLength > 0 ? `.[hash:${hashDigestLength}]` : ''
             }.[ext]`
           }
         },
@@ -201,7 +202,7 @@ const prodDefaultConfig = {
       {
         test: /\.svg$/i,
         use: {
-          loader: "svg-url-loader",
+          loader: 'svg-url-loader',
           options: {
             noquotes: true,
             limit: 8192
@@ -212,7 +213,7 @@ const prodDefaultConfig = {
       {
         test: /\.(swf|csv|xl[st]x?|docx?)$/i,
         use: `file-loader?name=[name]${
-          hashDigestLength > 0 ? `.[hash:${hashDigestLength}]` : ""
+          hashDigestLength > 0 ? `.[hash:${hashDigestLength}]` : ''
         }.[ext]`
       }
     ]
