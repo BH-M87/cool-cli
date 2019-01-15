@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-const updateNotifier = require("update-notifier");
-const pkg = require("../package.json");
+const updateNotifier = require('update-notifier');
+const pkg = require('../package.json');
 
 module.exports = () => {
   // Checks for available update and returns an instance

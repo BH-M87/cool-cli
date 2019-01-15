@@ -1,63 +1,63 @@
-"use strict";
+'use strict';
 
-const webpack = require("webpack");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const HtmlPlugin = require("html-webpack-plugin");
-const fs = require("fs-extra");
-const _ = require("lodash");
-const { srcPath, buildPath, nodeModulesPath, staticPath } = require("./paths");
-const { customConfig, devCustomConfig } = require("./customConfig");
+const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
+const fs = require('fs-extra');
+const _ = require('lodash');
+const { srcPath, buildPath, nodeModulesPath, staticPath } = require('./paths');
+const { customConfig, devCustomConfig } = require('./customConfig');
 const {
   getJsHappyPack,
   getCssHappyPack,
   getSassHappyPack,
   getLessHappyPack
-} = require("./happyPackPlugin");
+} = require('./happyPackPlugin');
 
 const {
   cssModules = false,
-  devHtmlTemplate = "./index.html",
+  devHtmlTemplate = './index.html',
   providePluginConfig
 } = customConfig;
 
 const devDefaultConfig = {
-  mode: "development",
+  mode: 'development',
   context: srcPath,
-  devtool: "cheap-module-eval-source-map",
+  devtool: 'cheap-module-eval-source-map',
   entry: [
-    require.resolve("react-hot-loader/patch"),
-    require.resolve("react-dev-utils/webpackHotDevClient"),
-    "./index"
+    require.resolve('react-hot-loader/patch'),
+    require.resolve('react-dev-utils/webpackHotDevClient'),
+    './index'
   ],
   externals: {},
   output: {
     path: buildPath,
-    filename: "[name].js",
-    chunkFilename: "[name].js",
-    crossOriginLoading: "anonymous"
+    filename: '[name].js',
+    chunkFilename: '[name].js',
+    crossOriginLoading: 'anonymous'
   },
   resolve: {
-    modules: ["node_modules", nodeModulesPath, srcPath],
-    extensions: [".js", ".json", ".jsx"]
+    modules: ['node_modules', nodeModulesPath, srcPath],
+    extensions: ['.js', '.json', '.jsx']
   },
   resolveLoader: {
-    modules: ["node_modules", nodeModulesPath]
+    modules: ['node_modules', nodeModulesPath]
   },
   optimization: {
     splitChunks: {
-      chunks: "initial"
+      chunks: 'initial'
     },
     runtimeChunk: true
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    getJsHappyPack("js", "dev"),
-    getCssHappyPack("css", "dev", cssModules),
-    getSassHappyPack("sass", "dev", cssModules),
-    getLessHappyPack("less", "dev", cssModules),
-    getCssHappyPack("cssGlobal", "dev"),
-    getSassHappyPack("sassGlobal", "dev"),
-    getLessHappyPack("lessGlobal", "dev")
+    getJsHappyPack('js', 'dev'),
+    getCssHappyPack('css', 'dev', cssModules),
+    getSassHappyPack('sass', 'dev', cssModules),
+    getLessHappyPack('less', 'dev', cssModules),
+    getCssHappyPack('cssGlobal', 'dev'),
+    getSassHappyPack('sassGlobal', 'dev'),
+    getLessHappyPack('lessGlobal', 'dev')
   ],
   module: {
     rules: [
@@ -66,10 +66,10 @@ const devDefaultConfig = {
         oneOf: [
           {
             resourceQuery: /es6/,
-            use: "happypack/loader?id=js"
+            use: 'happypack/loader?id=js'
           },
           {
-            use: "happypack/loader?id=js",
+            use: 'happypack/loader?id=js',
             exclude: /node_modules/
           }
         ]
@@ -79,10 +79,10 @@ const devDefaultConfig = {
         oneOf: [
           {
             resourceQuery: /global/,
-            use: "happypack/loader?id=cssGlobal"
+            use: 'happypack/loader?id=cssGlobal'
           },
           {
-            use: "happypack/loader?id=css"
+            use: 'happypack/loader?id=css'
           }
         ]
       },
@@ -91,10 +91,10 @@ const devDefaultConfig = {
         oneOf: [
           {
             resourceQuery: /global/,
-            use: "happypack/loader?id=sassGlobal"
+            use: 'happypack/loader?id=sassGlobal'
           },
           {
-            use: "happypack/loader?id=sass"
+            use: 'happypack/loader?id=sass'
           }
         ]
       },
@@ -103,54 +103,54 @@ const devDefaultConfig = {
         oneOf: [
           {
             resourceQuery: /global/,
-            use: "happypack/loader?id=lessGlobal"
+            use: 'happypack/loader?id=lessGlobal'
           },
           {
-            use: "happypack/loader?id=less"
+            use: 'happypack/loader?id=less'
           }
         ]
       },
       {
         resourceQuery: /external/,
-        loader: "file-loader?name=[name].[ext]"
+        loader: 'file-loader?name=[name].[ext]'
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/i,
-        loader: "file-loader"
+        loader: 'file-loader'
       },
       {
         test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/i,
         use: {
-          loader: "url-loader",
+          loader: 'url-loader',
           options: {
             limit: 10000,
             context: srcPath,
-            minetype: "application/font-woff"
+            minetype: 'application/font-woff'
           }
         }
       },
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/i,
         use: {
-          loader: "url-loader",
+          loader: 'url-loader',
           options: {
             limit: 10000,
             context: srcPath,
-            minetype: "application/octet-stream"
+            minetype: 'application/octet-stream'
           }
         }
       },
       {
         test: /\.(jpe?g|png|gif|svg|ttf|eot)(\?\w*=\w*)?$/i,
         use: {
-          loader: "file-loader"
+          loader: 'file-loader'
         },
         include: /node_modules/
       },
       {
         test: /\.(jpe?g|png|gif)$/i,
         use: {
-          loader: "url-loader",
+          loader: 'url-loader',
           options: {
             limit: 8192,
             context: srcPath
@@ -161,7 +161,7 @@ const devDefaultConfig = {
       {
         test: /\.svg$/i,
         use: {
-          loader: "svg-url-loader",
+          loader: 'svg-url-loader',
           options: {
             noquotes: true,
             limit: 8192
@@ -172,21 +172,21 @@ const devDefaultConfig = {
       {
         test: /\.(swf|csv|xl[st]x?|docx?)$/i,
         exclude: /node_modules/,
-        use: "file-loader?name=[name].[ext]"
+        use: 'file-loader?name=[name].[ext]'
       }
     ]
   },
   devServer: {
-    host: "127.0.0.1",
+    host: '127.0.0.1',
     port: 8001,
     proxy: {},
     compress: true,
     contentBase: buildPath,
-    clientLogLevel: "none",
+    clientLogLevel: 'none',
     disableHostCheck: true,
     hot: true,
     historyApiFallback: true,
-    publicPath: "/",
+    publicPath: '/',
     stats: {
       chunks: false,
       colors: true

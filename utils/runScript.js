@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const spawn = require("cross-spawn");
+const spawn = require('cross-spawn');
 
 module.exports = (script, args = []) =>
   // --no-deprecation, caused by a DeprecationWarning during upgradeing to webpack 4.0
@@ -15,6 +15,6 @@ module.exports = (script, args = []) =>
     at Function.Module._load (module.js:505:3)
     at Function.Module.runMain (module.js:701:10)
     at startup (bootstrap_node.js:194:16) */
-  spawn.sync("node", [require.resolve(script)].concat(args), {
-    stdio: "inherit"
+  spawn.sync('node', [require.resolve(script)].concat(args), {
+    stdio: 'inherit'
   });

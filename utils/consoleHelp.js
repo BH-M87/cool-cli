@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-const chalk = require("chalk");
-const argv = require("yargs").argv;
-const packageJsonConfig = require("../package.json");
+const chalk = require('chalk');
+const argv = require('yargs').argv;
+const packageJsonConfig = require('../package.json');
 
 const { version, description } = packageJsonConfig;
 
@@ -98,16 +98,16 @@ Options:
   -V, --version       output the version number
   -h, --help          output usage information
   --cssModules        turn on the css modules, default to ${chalk.underline(
-    "false"
+    'false'
   )}
   --devHtmlTemplate   change the dev template loaction and name,
                       or even set ${chalk.underline(
-                        "false"
+                        'false'
                       )} to close the html-webpack-plugin function
   --bundleLibrary     bundle your project into library
   --library           set the library name you want to export
   --libraryTarget     set the libray target type, default ${chalk.underline(
-    `'umd'`
+    '\'umd\''
   )}
   --notOpenBrowser    not open browser after server start
 `
@@ -121,24 +121,24 @@ Options:
   -V, --version       output the version number
   -h, --help          output usage information
   --cssModules        turn on the css modules, default to ${chalk.underline(
-    "false"
+    'false'
   )}
   --prodHtmlTemplate  change the prod template loaction and name,
                       or even set ${chalk.underline(
-                        "false"
+                        'false'
                       )} to close the html-webpack-plugin function
   --bundleLibrary     bundle your project into library
   --library           set the library name you want to export
   --libraryTarget     set the libray target type, default ${chalk.underline(
-    `'umd'`
+    '\'umd\''
   )}
   --hashDigestLength  pass a ${chalk.underline(
-    "Number"
+    'Number'
   )} to set the digest length of the hash, or set to ${chalk.underline(
       0
     )} to disable the hash
   --bundleAnalyze     visualize size of webpack output files with an interactive zoomable treemap, default ${chalk.underline(
-    "false"
+    'false'
   )}
 `
   );

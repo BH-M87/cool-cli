@@ -1,14 +1,14 @@
-"use strict";
+'use strict';
 
 const {
   customConfigPath,
   devCustomConfigPath,
   prodCustomConfigPath,
   packageJsonPath
-} = require("./paths");
-const fs = require("fs-extra");
-const _ = require("lodash");
-const { argv } = require("yargs");
+} = require('./paths');
+const fs = require('fs-extra');
+const _ = require('lodash');
+const { argv } = require('yargs');
 
 let customConfig = {};
 let devCustomConfig = {};
@@ -41,15 +41,15 @@ if (fs.existsSync(prodCustomConfigPath)) {
 
 // process argv
 const customArgv = _.pick(argv, [
-  "notOpenBrowser",
-  "cssModules",
-  "devHtmlTemplate",
-  "prodHtmlTemplate",
-  "bundleLibrary",
-  "library",
-  "libraryTarget",
-  "hashDigestLength",
-  "bundleAnalyze"
+  'notOpenBrowser',
+  'cssModules',
+  'devHtmlTemplate',
+  'prodHtmlTemplate',
+  'bundleLibrary',
+  'library',
+  'libraryTarget',
+  'hashDigestLength',
+  'bundleAnalyze'
 ]);
 
 _.assign(customConfig, customArgv);
