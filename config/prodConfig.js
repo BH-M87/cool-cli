@@ -153,19 +153,20 @@ const prodDefaultConfig = {
         ]
       },
       {
+        exclude: /\.(jpe?g|png|gif)$/i,
         resourceQuery: /external/,
-        loader: 'file-loader?name=[name].[ext]'
+        loader: 'file-loader?name=[path][name].[ext]'
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/i,
-        use: 'file-loader'
+        use: 'file-loader?name=[path][name].[ext]'
       },
       {
         test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/i,
         use: {
           loader: 'url-loader',
           options: {
-            limit: 10000,
+            limit: 8192,
             context: srcPath,
             minetype: 'application/font-woff'
           }
@@ -176,7 +177,7 @@ const prodDefaultConfig = {
         use: {
           loader: 'url-loader',
           options: {
-            limit: 10000,
+            limit: 8192,
             context: srcPath,
             minetype: 'application/octet-stream'
           }
@@ -191,16 +192,22 @@ const prodDefaultConfig = {
       },
       {
         test: /\.(jpe?g|png|gif)$/i,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 8192,
-            context: srcPath,
-            name: `[path][name]${
-              hashDigestLength > 0 ? `.[hash:${hashDigestLength}]` : ''
-            }.[ext]`
+        oneOf: [
+          {
+            resourceQuery: /external/,
+            loader: 'file-loader?name=[path][name].[ext]'
+          },
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              context: srcPath,
+              name: `[path][name]${
+                hashDigestLength > 0 ? `.[hash:${hashDigestLength}]` : ''
+              }.[ext]`
+            }
           }
-        },
+        ],
         exclude: /node_modules/
       },
       {
@@ -216,7 +223,7 @@ const prodDefaultConfig = {
       },
       {
         test: /\.(swf|csv|xl[st]x?|docx?)$/i,
-        use: `file-loader?name=[name]${
+        use: `file-loader?name=[path][name]${
           hashDigestLength > 0 ? `.[hash:${hashDigestLength}]` : ''
         }.[ext]`
       }

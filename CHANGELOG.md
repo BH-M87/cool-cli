@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.1.7  
+Update rules with image load.
+
 ### v1.1.6  
 Add `worker-loader` to support run scripts in background threads.   
 Worker should be named with `[name].worker.js`.  
