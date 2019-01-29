@@ -34,7 +34,8 @@ const devDefaultConfig = {
     path: buildPath,
     filename: '[name].js',
     chunkFilename: '[name].js',
-    crossOriginLoading: 'anonymous'
+    crossOriginLoading: 'anonymous',
+    globalObject: 'this' // fix problem with worker-loader, solve 'Uncaught ReferenceError: window is not defined'
   },
   resolve: {
     modules: ['node_modules', nodeModulesPath, srcPath],
@@ -61,6 +62,10 @@ const devDefaultConfig = {
   ],
   module: {
     rules: [
+      {
+        test: /\.worker\.js$/i,
+        use: { loader: 'worker-loader' }
+      },
       {
         test: /\.(jsx|js)?$/i,
         oneOf: [

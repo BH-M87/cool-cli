@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.1.6  
+Add `worker-loader` to support run scripts in background threads.   
+Worker should be named with `[name].worker.js`.  
+Rule: `/\.worker\.js$/i`.
+
 ### v1.1.5  
 Add `HashedModuleIdsPlugin`, hashes to be based on the relative path of the module, generating a four character string as the module id. Invoid unnecessary hash change.
 
