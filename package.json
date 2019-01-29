@@ -1,6 +1,6 @@
 {
   "name": "cool-cli",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "A cool cli, build for independent webpack config.",
   "author": "RJAVA1990<liuxuheng1990@gmail.com>",
   "license": "MIT",
