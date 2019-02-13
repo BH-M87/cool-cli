@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.1.8  
+Add support for [`idx`](https://github.com/facebookincubator/idx). Add babel plugin `babel-plugin-idx`.
+
 ### v1.1.7  
 Update rules with image load.
 

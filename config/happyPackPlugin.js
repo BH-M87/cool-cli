@@ -21,6 +21,9 @@ const getJsHappyPack = (id = 'js', env) => {
         }
       ],
 
+      // idx: https://github.com/facebookincubator/idx
+      [require.resolve('babel-plugin-idx')],
+
       // As of v7.0.0-beta.55, we've removed Babel's Stage presets.
       // Please consider reading our blog post on this decision at
       // https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets
