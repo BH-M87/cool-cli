@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.2.0  
+Add `hard-source-webpack-plugin` to provide an intermediate caching step for modules. Speed up 40%+ after first build.  
+In order to see results, you'll need to run webpack twice with this plugin: the first build will take the normal amount of time. The second build will be signficantly faster.
+
 ### v1.1.8  
 Add support for [`idx`](https://github.com/facebookincubator/idx). Add babel plugin `babel-plugin-idx`.
 

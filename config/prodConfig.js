@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
+var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const fs = require('fs-extra');
@@ -81,6 +82,7 @@ const prodDefaultConfig = {
         runtimeChunk: true
       },
   plugins: [
+    new HardSourceWebpackPlugin(),
     new webpack.HashedModuleIdsPlugin(),
     new MiniCssExtractPlugin({
       filename: `[name]${
