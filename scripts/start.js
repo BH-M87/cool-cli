@@ -19,7 +19,8 @@ const { status } = onHelp(consoleStartHelp, [
   'bundleLibrary',
   'library',
   'libraryTarget',
-  'notOpenBrowser'
+  'notOpenBrowser',
+  'publicPath'
 ]);
 if (status) {
   return;

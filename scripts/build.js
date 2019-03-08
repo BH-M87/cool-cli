@@ -14,7 +14,8 @@ const { status } = onHelp(consoleBuildHelp, [
   'library',
   'libraryTarget',
   'hashDigestLength',
-  'bundleAnalyze'
+  'bundleAnalyze',
+  'publicPath'
 ]);
 if (status) {
   return;

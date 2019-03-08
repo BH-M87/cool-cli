@@ -4,7 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
-### v1.2.1  
+### v1.2.2  
+Fix bug: Add publicPath config in available args list in scripts
+
+### ~~v1.2.1(deprecate)~~   
 Add config in `.cool.config.js` and command line arguments:  
 *--publicPath    webpack config: publicPath in output*
 
