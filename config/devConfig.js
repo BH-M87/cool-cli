@@ -18,7 +18,8 @@ const {
 const {
   cssModules = false,
   devHtmlTemplate = './index.html',
-  providePluginConfig
+  providePluginConfig,
+  publicPath = './'
 } = customConfig;
 
 const devDefaultConfig = {
@@ -33,6 +34,7 @@ const devDefaultConfig = {
   externals: {},
   output: {
     path: buildPath,
+    publicPath,
     filename: '[name].js',
     chunkFilename: '[name].js',
     crossOriginLoading: 'anonymous',

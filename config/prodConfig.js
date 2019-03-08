@@ -36,7 +36,8 @@ const {
   library = packageJsonConfig.name,
   libraryTarget,
   hashDigestLength = 8,
-  bundleAnalyze = false
+  bundleAnalyze = false,
+  publicPath = './'
 } = customConfig;
 
 const prodDefaultConfig = {
@@ -49,6 +50,7 @@ const prodDefaultConfig = {
   output: bundleLibrary
     ? {
         path: distPath,
+        publicPath,
         filename: '[name].js',
         chunkFilename: '[name].js',
         crossOriginLoading: 'anonymous',
@@ -58,6 +60,7 @@ const prodDefaultConfig = {
       }
     : {
         path: buildPath,
+        publicPath,
         filename: `[name]${
           hashDigestLength > 0 ? `.[chunkhash:${hashDigestLength}]` : ''
         }.js`,

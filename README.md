@@ -69,6 +69,8 @@ We usually put our webpack configuration in our own project with popular project
    >   --libraryTarget             set the libray target type, default 'umd'
    >
    >   --notOpenBrowser     not open browser after server start
+   >
+   >   --publicPath                 webpack config: publicPath in output
 
 5. `cool-cli build`
    > Options:
@@ -90,5 +92,7 @@ We usually put our webpack configuration in our own project with popular project
    >   --hashDigestLength     pass a Number to set the number of the chunkHash, or set 0 to close the hash
    >
    >   --bundleAnalyze           visualize size of webpack output files with an interactive zoomable treemap, default false
+   >
+   >   --publicPath                   webpack config: publicPath in output
 
 ***Happy Coding!!!***

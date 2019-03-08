@@ -110,6 +110,7 @@ Options:
     '\'umd\''
   )}
   --notOpenBrowser    not open browser after server start
+  --publicPath        webpack config: publicPath in output
 `
   );
 }
@@ -140,6 +141,7 @@ Options:
   --bundleAnalyze     visualize size of webpack output files with an interactive zoomable treemap, default ${chalk.underline(
     'false'
   )}
+  --publicPath        webpack config: publicPath in output
 `
   );
 }

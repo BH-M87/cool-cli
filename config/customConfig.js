@@ -49,7 +49,8 @@ const customArgv = _.pick(argv, [
   'library',
   'libraryTarget',
   'hashDigestLength',
-  'bundleAnalyze'
+  'bundleAnalyze',
+  'publicPath'
 ]);
 
 _.assign(customConfig, customArgv);

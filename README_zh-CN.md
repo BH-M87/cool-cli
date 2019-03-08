@@ -58,25 +58,27 @@
 
 4. `cool-cli start`
    > 启动`webpack dev server`，本地开发环境使用，集成`.mock.js`，支持内置的mock数据提供
-   > 
-   > Options:
-   > 
-   >   -V, --version                output the version number
-   > 
-   >   -h, --help                     output usage information
-   > 
-   >   --cssModules              turn on the css modules, default to false
-   > 
-   >   --devHtmlTemplate   change the dev template loaction and name,
-   > ​                                        or even set false to close the html-webpack-plugin function
-   > 
-   >   --bundleLibrary          bundle your project into library
-   > 
-   >   --library                        set the library name you want to export.
-   > 
-   >   --libraryTarget             set the libray target type, default 'umd'.
    >
-   >   --notOpenBrowser     not open browser after server start
+   > Options:
+   >
+   > -V, --version                output the version number
+   >
+   > -h, --help                     output usage information
+   >
+   > --cssModules              turn on the css modules, default to false
+   >
+   > --devHtmlTemplate   change the dev template loaction and name,
+   > ​                                        or even set false to close the html-webpack-plugin function
+   >
+   > --bundleLibrary          bundle your project into library
+   >
+   > --library                        set the library name you want to export
+   >
+   > --libraryTarget             set the libray target type, default 'umd'
+   >
+   > --notOpenBrowser     not open browser after server start
+   >
+   > --publicPath                 webpack config: publicPath in output
 
 5. `cool-cli build`
    > 打包发布，支持打包成生产环境部署包，或者加上`library`参数，打包发布成npm独立包。
@@ -100,5 +102,7 @@
    >   --hashDigestLength     pass a Number to set the number of the chunkHash, or set 0 to close the hash
    >
    >   --bundleAnalyze           visualize size of webpack output files with an interactive 
+   >
+   >   --publicPath                  webpack config: publicPath in output
 
 ***Happy Coding!!!***
