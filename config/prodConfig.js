@@ -7,6 +7,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
+const PrepackWebpackPlugin = require('prepack-webpack-plugin').default;
 const fs = require('fs-extra');
 const _ = require('lodash');
 const {
@@ -85,6 +86,7 @@ const prodDefaultConfig = {
         runtimeChunk: true
       },
   plugins: [
+    new PrepackWebpackPlugin(),
     new HardSourceWebpackPlugin(),
     new webpack.HashedModuleIdsPlugin(),
     new MiniCssExtractPlugin({
