@@ -3,7 +3,7 @@
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
-var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const fs = require('fs-extra');
 const _ = require('lodash');
 const { srcPath, buildPath, nodeModulesPath, staticPath } = require('./paths');

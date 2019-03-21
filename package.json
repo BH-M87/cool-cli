@@ -71,6 +71,7 @@
     "body-parser": "^1.18.3",
     "chalk": "^2.4.1",
     "chokidar": "^2.0.4",
+    "chunks-2-json-webpack-plugin": "^1.0.0",
     "co": "^4.6.0",
     "copy-webpack-plugin": "^4.6.0",
     "cross-spawn": "^6.0.5",

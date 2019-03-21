@@ -4,7 +4,8 @@ const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
-var HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const Chunks2JsonPlugin = require('chunks-2-json-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const fs = require('fs-extra');
@@ -85,6 +86,10 @@ const prodDefaultConfig = {
         runtimeChunk: true
       },
   plugins: [
+    new Chunks2JsonPlugin({
+      publicPath,
+      outputDir: bundleLibrary ? distPath : buildPath
+    }),
     new HardSourceWebpackPlugin(),
     new webpack.HashedModuleIdsPlugin(),
     new MiniCssExtractPlugin({

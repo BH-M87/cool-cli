@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.2.3 (2019-03-21)  
+Add ['Chunks2JsonPlugin'](https://www.npmjs.com/package/chunks-2-json-webpack-plugin), that outputs build files to JSON: `build-manifest.json`.
+
 ### v1.2.2  
 Fix bug: Add publicPath config in available args list in scripts
 
