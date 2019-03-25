@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const Chunks2JsonPlugin = require('chunks-2-json-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const fs = require('fs-extra');
@@ -90,6 +91,7 @@ const prodDefaultConfig = {
       publicPath,
       outputDir: bundleLibrary ? distPath : buildPath
     }),
+    new OptimizeCssAssetsPlugin(),
     new HardSourceWebpackPlugin(),
     new webpack.HashedModuleIdsPlugin(),
     new MiniCssExtractPlugin({

@@ -87,6 +87,7 @@
     "lodash": "^4.17.10",
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.2",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "portfinder": "^1.0.13",
     "postcss-loader": "^2.1.6",
     "react-dev-utils": "^5.0.1",
