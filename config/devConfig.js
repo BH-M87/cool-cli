@@ -4,9 +4,16 @@ const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const fs = require('fs-extra');
 const _ = require('lodash');
-const { srcPath, buildPath, nodeModulesPath, staticPath } = require('./paths');
+const {
+  srcPath,
+  buildPath,
+  nodeModulesPath,
+  staticPath,
+  tsConfigPath
+} = require('./paths');
 const { customConfig, devCustomConfig } = require('./customConfig');
 const {
   getJsHappyPack,
@@ -42,7 +49,7 @@ const devDefaultConfig = {
   },
   resolve: {
     modules: ['node_modules', nodeModulesPath, srcPath],
-    extensions: ['.js', '.json', '.jsx']
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
   },
   resolveLoader: {
     modules: ['node_modules', nodeModulesPath]
@@ -54,9 +61,14 @@ const devDefaultConfig = {
     runtimeChunk: true
   },
   plugins: [
+    new ForkTsCheckerWebpackPlugin({
+      tsconfig: tsConfigPath,
+      checkSyntacticErrors: true
+    }),
     new HardSourceWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     getJsHappyPack('js', 'dev'),
+    getJsHappyPack('ts', 'dev'),
     getCssHappyPack('css', 'dev', cssModules),
     getSassHappyPack('sass', 'dev', cssModules),
     getLessHappyPack('less', 'dev', cssModules),
@@ -71,7 +83,7 @@ const devDefaultConfig = {
         use: { loader: 'worker-loader' }
       },
       {
-        test: /\.(jsx|js)?$/i,
+        test: /\.jsx?$/i,
         oneOf: [
           {
             resourceQuery: /es6/,
@@ -79,6 +91,19 @@ const devDefaultConfig = {
           },
           {
             use: 'happypack/loader?id=js',
+            exclude: /node_modules/
+          }
+        ]
+      },
+      {
+        test: /\.tsx?$/i,
+        oneOf: [
+          {
+            resourceQuery: /es6/,
+            use: 'happypack/loader?id=ts'
+          },
+          {
+            use: 'happypack/loader?id=ts',
             exclude: /node_modules/
           }
         ]

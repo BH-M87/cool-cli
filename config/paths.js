@@ -39,5 +39,8 @@ module.exports = {
   },
   get packageJsonPath() {
     return resolveApp('package.json');
+  },
+  get tsConfigPath() {
+    return resolveApp('tsconfig.json');
   }
 };

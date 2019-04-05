@@ -69,22 +69,35 @@ const getJsHappyPack = (id = 'js', env) => {
     }
     return babelPlugins;
   })();
+  const loaders = [
+    {
+      loader: 'babel-loader',
+      options: {
+        babelrc: false,
+        presets: [
+          require.resolve('@babel/preset-typescript'),
+          [require.resolve('@babel/preset-env'), { modules: false, targets }],
+          require.resolve('@babel/preset-react')
+        ],
+        plugins
+      }
+    }
+  ];
   const happyPackConfig = {
     id,
     threads,
-    loaders: [
-      {
-        loader: 'babel-loader',
-        options: {
-          babelrc: false,
-          presets: [
-            [require.resolve('@babel/preset-env'), { modules: false, targets }],
-            require.resolve('@babel/preset-react')
-          ],
-          plugins
-        }
-      }
-    ]
+    loaders: /^tsx?$/i.test(id)
+      ? loaders.concat([
+          {
+            loader: 'ts-loader',
+            options: {
+              happyPackMode: true,
+              // disable type checker - we will use it in fork plugin
+              transpileOnly: true
+            }
+          }
+        ])
+      : loaders
   };
   return new HappyPack(happyPackConfig);
 };

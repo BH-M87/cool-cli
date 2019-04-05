@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.3.0 (2019-04-06)  
+[TypeScript](https://www.typescriptlang.org/) supported.
+
 ### v1.2.4 (2019-03-25)  
 Add ['OptimizeCssAssetsPlugin'](https://github.com/NMFR/optimize-css-assets-webpack-plugin). It will search for CSS assets during the Webpack build and will optimize \ minimize the CSS by using ['cssnano'](https://github.com/cssnano/cssnano).  
 From test result, it will reduce the file size by 20%.
