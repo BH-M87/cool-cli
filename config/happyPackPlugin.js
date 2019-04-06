@@ -86,18 +86,7 @@ const getJsHappyPack = (id = 'js', env) => {
   const happyPackConfig = {
     id,
     threads,
-    loaders: /^tsx?$/i.test(id)
-      ? loaders.concat([
-          {
-            loader: 'ts-loader',
-            options: {
-              happyPackMode: true,
-              // disable type checker - we will use it in fork plugin
-              transpileOnly: true
-            }
-          }
-        ])
-      : loaders
+    loaders
   };
   return new HappyPack(happyPackConfig);
 };

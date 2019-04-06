@@ -108,7 +108,6 @@ const prodDefaultConfig = {
       }.css`
     }),
     getJsHappyPack('js', 'prod'),
-    getJsHappyPack('ts', 'prod'),
     getCssHappyPack('css', 'prod', cssModules),
     getSassHappyPack('sass', 'prod', cssModules),
     getLessHappyPack('less', 'prod', cssModules),
@@ -123,7 +122,7 @@ const prodDefaultConfig = {
         use: { loader: 'worker-loader', options: { inline: true } }
       },
       {
-        test: /\.jsx?$/i,
+        test: /\.(j|t)sx?$/i,
         oneOf: [
           {
             resourceQuery: /es6/,
@@ -131,19 +130,6 @@ const prodDefaultConfig = {
           },
           {
             use: 'happypack/loader?id=js',
-            exclude: /node_modules/
-          }
-        ]
-      },
-      {
-        test: /\.tsx?$/i,
-        oneOf: [
-          {
-            resourceQuery: /es6/,
-            use: 'happypack/loader?id=ts'
-          },
-          {
-            use: 'happypack/loader?id=ts',
             exclude: /node_modules/
           }
         ]

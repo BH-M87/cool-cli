@@ -68,7 +68,6 @@ const devDefaultConfig = {
     new HardSourceWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     getJsHappyPack('js', 'dev'),
-    getJsHappyPack('ts', 'dev'),
     getCssHappyPack('css', 'dev', cssModules),
     getSassHappyPack('sass', 'dev', cssModules),
     getLessHappyPack('less', 'dev', cssModules),
@@ -83,7 +82,7 @@ const devDefaultConfig = {
         use: { loader: 'worker-loader' }
       },
       {
-        test: /\.jsx?$/i,
+        test: /\.(j|t)sx?$/i,
         oneOf: [
           {
             resourceQuery: /es6/,
@@ -91,19 +90,6 @@ const devDefaultConfig = {
           },
           {
             use: 'happypack/loader?id=js',
-            exclude: /node_modules/
-          }
-        ]
-      },
-      {
-        test: /\.tsx?$/i,
-        oneOf: [
-          {
-            resourceQuery: /es6/,
-            use: 'happypack/loader?id=ts'
-          },
-          {
-            use: 'happypack/loader?id=ts',
             exclude: /node_modules/
           }
         ]

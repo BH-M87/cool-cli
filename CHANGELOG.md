@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.3.1 (2019-04-06)  
+Remove `ts-loader`, using `@babel/preset-typescript` instead.
+
 ### v1.3.0 (2019-04-06)  
 [TypeScript](https://www.typescriptlang.org/) supported.
 
