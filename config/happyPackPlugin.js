@@ -70,7 +70,6 @@ const getJsHappyPack = (id = 'js', env) => {
     return babelPlugins;
   })();
   const presets = [
-    require.resolve('@babel/preset-typescript'),
     [require.resolve('@babel/preset-env'), { modules: false, targets }],
     require.resolve('@babel/preset-react')
   ];
@@ -79,9 +78,10 @@ const getJsHappyPack = (id = 'js', env) => {
       loader: 'babel-loader',
       options: {
         babelrc: false,
-        presets: /\.tsx?$/i.test(id)
-          ? presets
-          : [require.resolve('@babel/preset-typescript')].concat(presets),
+        presets:
+          env === 'prod' && /\.tsx?$/i.test(id)
+            ? presets
+            : [require.resolve('@babel/preset-typescript')].concat(presets),
         plugins
       }
     }

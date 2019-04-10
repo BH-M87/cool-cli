@@ -15,7 +15,9 @@ const { status } = onHelp(consoleBuildHelp, [
   'libraryTarget',
   'hashDigestLength',
   'bundleAnalyze',
-  'publicPath'
+  'publicPath',
+  'typescript',
+  'ts'
 ]);
 if (status) {
   return;

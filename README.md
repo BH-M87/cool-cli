@@ -71,6 +71,8 @@ We usually put our webpack configuration in our own project with popular project
    >   --notOpenBrowser     not open browser after server start
    >
    >   --publicPath                 webpack config: publicPath in output
+   >
+   >   --typescript or --ts       enable TypeScript support
 
 5. `cool-cli build`
    > Options:
@@ -94,5 +96,7 @@ We usually put our webpack configuration in our own project with popular project
    >   --bundleAnalyze           visualize size of webpack output files with an interactive zoomable treemap, default false
    >
    >   --publicPath                   webpack config: publicPath in output
+   >
+   >   --typescript or --ts         enable TypeScript support
 
 ***Happy Coding!!!***

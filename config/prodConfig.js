@@ -39,8 +39,11 @@ const {
   libraryTarget,
   hashDigestLength = 8,
   bundleAnalyze = false,
-  publicPath = './'
+  publicPath = './',
+  ts = false,
+  typescript = false
 } = customConfig;
+const isTypeScriptEnable = ts || typescript;
 
 const prodDefaultConfig = {
   mode: 'production',
@@ -102,7 +105,6 @@ const prodDefaultConfig = {
       }.css`
     }),
     getJsHappyPack('js', 'prod'),
-    getJsHappyPack('ts', 'prod'),
     getCssHappyPack('css', 'prod', cssModules),
     getSassHappyPack('sass', 'prod', cssModules),
     getLessHappyPack('less', 'prod', cssModules),
@@ -125,19 +127,6 @@ const prodDefaultConfig = {
           },
           {
             use: 'happypack/loader?id=js',
-            exclude: /node_modules/
-          }
-        ]
-      },
-      {
-        test: /\.tsx?$/i,
-        oneOf: [
-          {
-            resourceQuery: /es6/,
-            use: 'happypack/loader?id=ts'
-          },
-          {
-            use: 'happypack/loader?id=ts',
             exclude: /node_modules/
           }
         ]
@@ -282,6 +271,23 @@ if (fs.existsSync(staticPath)) {
       }
     ])
   );
+}
+// add TypeScript support
+if (isTypeScriptEnable) {
+  prodDefaultConfig.plugins.push(getJsHappyPack('ts', 'prod'));
+  prodDefaultConfig.module.rules.unshift({
+    test: /\.tsx?$/i,
+    oneOf: [
+      {
+        resourceQuery: /es6/,
+        use: 'happypack/loader?id=ts'
+      },
+      {
+        use: 'happypack/loader?id=ts',
+        exclude: /node_modules/
+      }
+    ]
+  });
 }
 
 module.exports = _.isFunction(prodCustomConfig)

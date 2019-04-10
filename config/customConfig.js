@@ -50,7 +50,9 @@ const customArgv = _.pick(argv, [
   'libraryTarget',
   'hashDigestLength',
   'bundleAnalyze',
-  'publicPath'
+  'publicPath',
+  'typescript',
+  'ts'
 ]);
 
 _.assign(customConfig, customArgv);

@@ -61,24 +61,26 @@
    >
    > Options:
    >
-   > -V, --version                output the version number
-   >
-   > -h, --help                     output usage information
-   >
-   > --cssModules              turn on the css modules, default to false
-   >
-   > --devHtmlTemplate   change the dev template loaction and name,
-   > ​                                        or even set false to close the html-webpack-plugin function
-   >
-   > --bundleLibrary          bundle your project into library
-   >
-   > --library                        set the library name you want to export
-   >
-   > --libraryTarget             set the libray target type, default 'umd'
-   >
-   > --notOpenBrowser     not open browser after server start
-   >
-   > --publicPath                 webpack config: publicPath in output
+   >   -V, --version                output the version number
+   >  
+   >   -h, --help                     output usage information
+   >  
+   >   --cssModules              turn on the css modules, default to false
+   >  
+   >   --devHtmlTemplate   change the dev template loaction and name,
+   >   ​                                        or even set false to close the html-webpack-plugin function
+   >  
+   >   --bundleLibrary          bundle your project into library
+   >  
+   >   --library                        set the library name you want to export
+   >  
+   >   --libraryTarget             set the libray target type, default 'umd'
+   >  
+   >   --notOpenBrowser     not open browser after server start
+   >  
+   >   --publicPath                 webpack config: publicPath in output
+   >  
+   >   --typescript or --ts       enable TypeScript support
 
 5. `cool-cli build`
    > 打包发布，支持打包成生产环境部署包，或者加上`library`参数，打包发布成npm独立包。
@@ -104,5 +106,7 @@
    >   --bundleAnalyze           visualize size of webpack output files with an interactive 
    >
    >   --publicPath                  webpack config: publicPath in output
+   >
+   >   --typescript or --ts        enable TypeScript support
 
 ***Happy Coding!!!***

@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### v1.3.2 (2019-04-10)  
 1. Use `ts-loader` when building.
+2. Add `typescript` or `ts` config in `.cool.config.js`, set to `true` to enable TypeScript.
 
 ### v1.3.1 (2019-04-06)  
 Remove `ts-loader`, using `@babel/preset-typescript` instead.

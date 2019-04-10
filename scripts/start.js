@@ -20,7 +20,9 @@ const { status } = onHelp(consoleStartHelp, [
   'library',
   'libraryTarget',
   'notOpenBrowser',
-  'publicPath'
+  'publicPath',
+  'typescript',
+  'ts'
 ]);
 if (status) {
   return;

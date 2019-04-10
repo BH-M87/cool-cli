@@ -95,22 +95,23 @@ function consoleStartHelp() {
     `Usage:  cool-cli start [options]
 
 Options:
-  -V, --version       output the version number
-  -h, --help          output usage information
-  --cssModules        turn on the css modules, default to ${chalk.underline(
+  -V, --version         output the version number
+  -h, --help            output usage information
+  --cssModules          turn on the css modules, default to ${chalk.underline(
     'false'
   )}
-  --devHtmlTemplate   change the dev template loaction and name,
-                      or even set ${chalk.underline(
-                        'false'
-                      )} to close the html-webpack-plugin function
-  --bundleLibrary     bundle your project into library
-  --library           set the library name you want to export
-  --libraryTarget     set the libray target type, default ${chalk.underline(
+  --devHtmlTemplate     change the dev template loaction and name,
+                        or even set ${chalk.underline(
+                          'false'
+                        )} to close the html-webpack-plugin function
+  --bundleLibrary       bundle your project into library
+  --library             set the library name you want to export
+  --libraryTarget       set the libray target type, default ${chalk.underline(
     '\'umd\''
   )}
-  --notOpenBrowser    not open browser after server start
-  --publicPath        webpack config: publicPath in output
+  --notOpenBrowser      not open browser after server start
+  --publicPath          webpack config: publicPath in output
+  --typescript or --ts  enable TypeScript support
 `
   );
 }
@@ -119,29 +120,30 @@ function consoleBuildHelp() {
     `Usage:  cool-cli build [options]
 
 Options:
-  -V, --version       output the version number
-  -h, --help          output usage information
-  --cssModules        turn on the css modules, default to ${chalk.underline(
+  -V, --version         output the version number
+  -h, --help            output usage information
+  --cssModules          turn on the css modules, default to ${chalk.underline(
     'false'
   )}
-  --prodHtmlTemplate  change the prod template loaction and name,
-                      or even set ${chalk.underline(
-                        'false'
-                      )} to close the html-webpack-plugin function
-  --bundleLibrary     bundle your project into library
-  --library           set the library name you want to export
-  --libraryTarget     set the libray target type, default ${chalk.underline(
+  --prodHtmlTemplate    change the prod template loaction and name,
+                        or even set ${chalk.underline(
+                          'false'
+                        )} to close the html-webpack-plugin function
+  --bundleLibrary       bundle your project into library
+  --library             set the library name you want to export
+  --libraryTarget       set the libray target type, default ${chalk.underline(
     '\'umd\''
   )}
-  --hashDigestLength  pass a ${chalk.underline(
+  --hashDigestLength    pass a ${chalk.underline(
     'Number'
   )} to set the digest length of the hash, or set to ${chalk.underline(
       0
     )} to disable the hash
-  --bundleAnalyze     visualize size of webpack output files with an interactive zoomable treemap, default ${chalk.underline(
+  --bundleAnalyze       visualize size of webpack output files with an interactive zoomable treemap, default ${chalk.underline(
     'false'
   )}
-  --publicPath        webpack config: publicPath in output
+  --publicPath          webpack config: publicPath in output
+  --typescript or --ts  enable TypeScript support
 `
   );
 }

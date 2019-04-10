@@ -26,8 +26,11 @@ const {
   cssModules = false,
   devHtmlTemplate = './index.html',
   providePluginConfig,
-  publicPath = './'
+  publicPath = './',
+  ts = false,
+  typescript = false
 } = customConfig;
+const isTypeScriptEnable = ts || typescript;
 
 const devDefaultConfig = {
   mode: 'development',
@@ -61,10 +64,6 @@ const devDefaultConfig = {
     runtimeChunk: true
   },
   plugins: [
-    new ForkTsCheckerWebpackPlugin({
-      tsconfig: tsConfigPath,
-      checkSyntacticErrors: true
-    }),
     new HardSourceWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     getJsHappyPack('js', 'dev'),
@@ -241,6 +240,15 @@ if (fs.existsSync(staticPath)) {
         to: `${buildPath}/static`
       }
     ])
+  );
+}
+// add TypeScript support
+if (isTypeScriptEnable) {
+  devDefaultConfig.plugins.push(
+    new ForkTsCheckerWebpackPlugin({
+      tsconfig: tsConfigPath,
+      checkSyntacticErrors: true
+    })
   );
 }
 
