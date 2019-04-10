@@ -69,16 +69,19 @@ const getJsHappyPack = (id = 'js', env) => {
     }
     return babelPlugins;
   })();
+  const presets = [
+    require.resolve('@babel/preset-typescript'),
+    [require.resolve('@babel/preset-env'), { modules: false, targets }],
+    require.resolve('@babel/preset-react')
+  ];
   const loaders = [
     {
       loader: 'babel-loader',
       options: {
         babelrc: false,
-        presets: [
-          require.resolve('@babel/preset-typescript'),
-          [require.resolve('@babel/preset-env'), { modules: false, targets }],
-          require.resolve('@babel/preset-react')
-        ],
+        presets: /\.tsx?$/i.test(id)
+          ? presets
+          : [require.resolve('@babel/preset-typescript')].concat(presets),
         plugins
       }
     }
@@ -86,7 +89,13 @@ const getJsHappyPack = (id = 'js', env) => {
   const happyPackConfig = {
     id,
     threads,
-    loaders
+    loaders: /\.tsx?$/i.test(id)
+      ? loaders.concat([
+          {
+            loader: 'ts-loader'
+          }
+        ])
+      : loaders
   };
   return new HappyPack(happyPackConfig);
 };

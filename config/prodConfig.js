@@ -7,7 +7,6 @@ const HtmlPlugin = require('html-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const Chunks2JsonPlugin = require('chunks-2-json-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const fs = require('fs-extra');
@@ -17,8 +16,7 @@ const {
   buildPath,
   distPath,
   nodeModulesPath,
-  staticPath,
-  tsConfigPath
+  staticPath
 } = require('./paths');
 const {
   packageJsonConfig,
@@ -89,10 +87,6 @@ const prodDefaultConfig = {
         runtimeChunk: true
       },
   plugins: [
-    new ForkTsCheckerWebpackPlugin({
-      tsconfig: tsConfigPath,
-      checkSyntacticErrors: true
-    }),
     new Chunks2JsonPlugin({
       publicPath,
       outputDir: bundleLibrary ? distPath : buildPath
@@ -108,6 +102,7 @@ const prodDefaultConfig = {
       }.css`
     }),
     getJsHappyPack('js', 'prod'),
+    getJsHappyPack('ts', 'prod'),
     getCssHappyPack('css', 'prod', cssModules),
     getSassHappyPack('sass', 'prod', cssModules),
     getLessHappyPack('less', 'prod', cssModules),
@@ -122,7 +117,7 @@ const prodDefaultConfig = {
         use: { loader: 'worker-loader', options: { inline: true } }
       },
       {
-        test: /\.(j|t)sx?$/i,
+        test: /\.jsx?$/i,
         oneOf: [
           {
             resourceQuery: /es6/,
@@ -130,6 +125,19 @@ const prodDefaultConfig = {
           },
           {
             use: 'happypack/loader?id=js',
+            exclude: /node_modules/
+          }
+        ]
+      },
+      {
+        test: /\.tsx?$/i,
+        oneOf: [
+          {
+            resourceQuery: /es6/,
+            use: 'happypack/loader?id=ts'
+          },
+          {
+            use: 'happypack/loader?id=ts',
             exclude: /node_modules/
           }
         ]

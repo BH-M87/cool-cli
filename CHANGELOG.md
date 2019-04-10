@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.3.2 (2019-04-10)  
+1. Use `ts-loader` when building.
+
 ### v1.3.1 (2019-04-06)  
 Remove `ts-loader`, using `@babel/preset-typescript` instead.
 
