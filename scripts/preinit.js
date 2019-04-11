@@ -18,6 +18,14 @@ const getNpmType = () => {
   return 'npm';
 };
 
+const generatorName = () => {
+  if (argv.template === '@alife/engine') {
+    return '@alife/generator-engine';
+  } else {
+    return '';
+  }
+};
+
 function preinit() {
   console.log(
     chalk.magenta(
@@ -30,7 +38,7 @@ function preinit() {
       'first before init.'
     )
   );
-  exec(`${getNpmType()} install -g yo generator-cool`, {
+  exec(`${getNpmType()} install -g yo generator-cool ${generatorName()}`, {
     stdio: 'inherit'
   });
 }

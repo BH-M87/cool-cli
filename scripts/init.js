@@ -8,10 +8,20 @@ const { onHelp, consoleInitHelp } = require('../utils/consoleHelp');
 const { status, argv } = onHelp(consoleInitHelp, [
   'skipupdate',
   'tnpm',
-  'cnpm'
+  'cnpm',
+  'template'
 ]);
 if (status) {
   return;
+}
+
+function getGenerator() {
+  if (argv.template === 'engine') {
+    return `@alife/${argv.template}`;
+  } else if (argv.template === '@alife/engine') {
+    return argv.template;
+  }
+  return 'cool';
 }
 
 function init() {
@@ -23,10 +33,14 @@ function init() {
     if (argv.cnpm) {
       preinitArgv.push('--cnpm');
     }
+    const generator = getGenerator();
+    if (generator) {
+      preinitArgv.push(`--template ${generator}`);
+    }
     runScript('../scripts/preinit', preinitArgv);
   }
   console.log(chalk.magenta('Init project:'));
-  exec('yo cool --no-insight --no-update-notifier', {
+  exec(`yo ${getGenerator()} --no-insight --no-update-notifier`, {
     stdio: 'inherit'
   });
 }
