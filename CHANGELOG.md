@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.3.3 (2019-04-11)  
+Add `template` config in `cool-cli init` and `cool-cli preinit`, use your own yoeman generator as you wish.
+
 ### v1.3.2 (2019-04-10)  
 1. Use `ts-loader` when building.
 2. Add `typescript` or `ts` config in `.cool.config.js`, set to `true` to enable TypeScript.

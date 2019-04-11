@@ -37,6 +37,8 @@ We usually put our webpack configuration in our own project with popular project
    >   -c, --cnpm              install yoeman and generator-cool using cnpm, default npm
    >
    >   -t, --tnpm               install yoeman and generator-cool using tnpm, default npm
+   >
+   >   --template             use your own yoeman generator as you wish
 
 3. `cool-cli preinit`
 
@@ -49,6 +51,8 @@ We usually put our webpack configuration in our own project with popular project
    >   -c, --cnpm      install yoeman and generator-cool using cnpm, default npm
    >
    >   -t, --tnpm       install yoeman and generator-cool using tnpm, default npm
+   >
+   >   --template     use your own yoeman generator as you wish
 
 4. `cool-cli start`
    > Options:

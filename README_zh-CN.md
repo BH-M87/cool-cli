@@ -42,6 +42,8 @@
    >   -c, --cnpm              install yoeman and generator-cool using cnpm, default npm
    >
    >   -t, --tnpm               install yoeman and generator-cool using tnpm, default npm
+   >
+   >   --template             use your own yoeman generator as you wish
 
 3. `cool-cli preinit`
    > 全局安装一键生成新项目的前置依赖，`yo` & `generator-cool`
@@ -55,6 +57,8 @@
    >   -c, --cnpm      install yoeman and generator-cool using cnpm, default npm
    >
    >   -t, --tnpm       install yoeman and generator-cool using tnpm, default npm
+   >
+   >   --template     use your own yoeman generator as you wish
 
 4. `cool-cli start`
    > 启动`webpack dev server`，本地开发环境使用，集成`.mock.js`，支持内置的mock数据提供

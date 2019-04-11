@@ -8,7 +8,8 @@ const { onHelp, consoleInitHelp } = require('../utils/consoleHelp');
 const { status, argv } = onHelp(consoleInitHelp, [
   'skipupdate',
   'tnpm',
-  'cnpm'
+  'cnpm',
+  'template'
 ]);
 if (status) {
   return;
@@ -23,10 +24,13 @@ function init() {
     if (argv.cnpm) {
       preinitArgv.push('--cnpm');
     }
+    if (argv.template) {
+      preinitArgv.push(`--template=${argv.template}`);
+    }
     runScript('../scripts/preinit', preinitArgv);
   }
   console.log(chalk.magenta('Init project:'));
-  exec('yo cool --no-insight --no-update-notifier', {
+  exec(`yo ${argv.template || 'cool'} --no-insight --no-update-notifier`, {
     stdio: 'inherit'
   });
 }
