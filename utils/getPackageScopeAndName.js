@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = packageName => {
+module.exports = (packageName = '') => {
   const match = /^(@[a-z0-9-~][a-z0-9-._~]*)\/([a-z0-9-~][a-z0-9-._~]*$)/.exec(
     packageName
   );
