@@ -7,7 +7,6 @@ const HtmlPlugin = require('html-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const Chunks2JsonPlugin = require('chunks-2-json-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const DashboardPlugin = require('webpack-dashboard/plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const fs = require('fs-extra');
@@ -94,7 +93,6 @@ const prodDefaultConfig = {
         runtimeChunk: true
       },
   plugins: [
-    new DashboardPlugin(),
     new webpack.DefinePlugin(
       _.merge({}, definePluginConfig, definePluginProdConfig)
     ),

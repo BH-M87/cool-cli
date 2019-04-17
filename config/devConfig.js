@@ -5,7 +5,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const DashboardPlugin = require('webpack-dashboard/plugin');
 const fs = require('fs-extra');
 const _ = require('lodash');
 const {
@@ -68,7 +67,6 @@ const devDefaultConfig = {
     runtimeChunk: true
   },
   plugins: [
-    new DashboardPlugin(),
     new webpack.DefinePlugin(
       _.merge({}, definePluginConfig, definePluginDevConfig)
     ),

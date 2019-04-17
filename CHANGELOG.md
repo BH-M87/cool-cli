@@ -6,8 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### v1.3.4 (2019-04-17)  
 1. Update `template` config in `html-webpack-plugin`, can pass `devHtmlTemplate` and `prodHtmlTemplate` config from shell or `.cool.config.js`. Default to `true`, this means *cool-cli* will check whether `src/index.ejs` and then `src/index.html` exists, if so, use it as html template, otherwise use default template. Or pass custom template by give the path of the template file instead of `true` or `false`.
-2. Add `DashboardPlugin` to show info super helpful.
-3. Add `definePluginConfig` for common, `definePluginDevConfig` for dev environment and `definePluginProdConfig` for prod environment in `.cool.config.js`.
+2. Add `definePluginConfig` for common, `definePluginDevConfig` for dev environment and `definePluginProdConfig` for prod environment in `.cool.config.js`.
 
 ### v1.3.3 (2019-04-11)  
 Add `template` config in `cool-cli init` and `cool-cli preinit`, use your own yoeman generator as you wish.
