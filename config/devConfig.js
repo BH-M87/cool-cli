@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 const fs = require('fs-extra');
 const _ = require('lodash');
 const {
@@ -21,14 +22,17 @@ const {
   getSassHappyPack,
   getLessHappyPack
 } = require('./happyPackPlugin');
+const getHtmlPluginConfig = require('../utils/getHtmlPluginConfig');
 
 const {
   cssModules = false,
-  devHtmlTemplate = './index.html',
+  devHtmlTemplate = true,
   providePluginConfig,
   publicPath = './',
   ts = false,
-  typescript = false
+  typescript = false,
+  definePluginConfig = {},
+  definePluginDevConfig = {}
 } = customConfig;
 const isTypeScriptEnable = ts || typescript;
 
@@ -64,6 +68,10 @@ const devDefaultConfig = {
     runtimeChunk: true
   },
   plugins: [
+    new DashboardPlugin(),
+    new webpack.DefinePlugin(
+      _.merge({}, definePluginConfig, definePluginDevConfig)
+    ),
     new HardSourceWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     getJsHappyPack('js', 'dev'),
@@ -226,7 +234,9 @@ const devDefaultConfig = {
 
 // from user config
 if (devHtmlTemplate) {
-  devDefaultConfig.plugins.push(new HtmlPlugin({ template: devHtmlTemplate }));
+  devDefaultConfig.plugins.push(
+    new HtmlPlugin(getHtmlPluginConfig(devHtmlTemplate))
+  );
 }
 if (providePluginConfig) {
   devDefaultConfig.plugins.push(new webpack.ProvidePlugin(providePluginConfig));

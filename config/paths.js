@@ -22,6 +22,12 @@ module.exports = {
   get srcPath() {
     return resolveApp('src');
   },
+  get templateHtmlPath() {
+    return resolveApp('src/index.html');
+  },
+  get templateEjsPath() {
+    return resolveApp('src/index.ejs');
+  },
   get staticPath() {
     return resolveApp('static');
   },

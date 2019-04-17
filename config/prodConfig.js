@@ -7,6 +7,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const Chunks2JsonPlugin = require('chunks-2-json-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const fs = require('fs-extra');
@@ -30,10 +31,11 @@ const {
   getSassHappyPack,
   getLessHappyPack
 } = require('./happyPackPlugin');
+const getHtmlPluginConfig = require('../utils/getHtmlPluginConfig');
 
 const {
   cssModules = false,
-  prodHtmlTemplate = './index.html',
+  prodHtmlTemplate = true,
   bundleLibrary = false,
   library = packageJsonConfig.name,
   libraryTarget,
@@ -41,7 +43,9 @@ const {
   bundleAnalyze = false,
   publicPath = './',
   ts = false,
-  typescript = false
+  typescript = false,
+  definePluginConfig = {},
+  definePluginProdConfig = {}
 } = customConfig;
 const isTypeScriptEnable = ts || typescript;
 
@@ -90,6 +94,10 @@ const prodDefaultConfig = {
         runtimeChunk: true
       },
   plugins: [
+    new DashboardPlugin(),
+    new webpack.DefinePlugin(
+      _.merge({}, definePluginConfig, definePluginProdConfig)
+    ),
     new Chunks2JsonPlugin({
       publicPath,
       outputDir: bundleLibrary ? distPath : buildPath
@@ -249,7 +257,7 @@ const prodDefaultConfig = {
 // from user config
 if (prodHtmlTemplate) {
   prodDefaultConfig.plugins.push(
-    new HtmlPlugin({ template: prodHtmlTemplate })
+    new HtmlPlugin(getHtmlPluginConfig(prodHtmlTemplate))
   );
 }
 if (providePluginConfig) {
