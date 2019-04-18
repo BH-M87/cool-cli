@@ -83,6 +83,11 @@ const devDefaultConfig = {
   module: {
     rules: [
       {
+        resourceQuery: /raw/,
+        enforce: 'pre',
+        use: { loader: 'raw-loader' }
+      },
+      {
         test: /\.worker\.js$/i,
         use: { loader: 'worker-loader' }
       },

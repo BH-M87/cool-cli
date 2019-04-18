@@ -121,6 +121,11 @@ const prodDefaultConfig = {
   module: {
     rules: [
       {
+        resourceQuery: /raw/,
+        enforce: 'pre',
+        use: { loader: 'raw-loader' }
+      },
+      {
         test: /\.worker\.js$/,
         use: { loader: 'worker-loader', options: { inline: true } }
       },

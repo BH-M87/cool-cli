@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.3.5 (2019-04-18)  
+Add `raw-loader`, apply to file name with query `?raw`.
+For example, `./test.jsx?raw`.
+
 ### v1.3.4 (2019-04-17)  
 1. Update `template` config in `html-webpack-plugin`, can pass `devHtmlTemplate` and `prodHtmlTemplate` config from shell or `.cool.config.js`. Default to `true`, this means *cool-cli* will check whether `src/index.ejs` and then `src/index.html` exists, if so, use it as html template, otherwise use default template. Or pass custom template by give the path of the template file instead of `true` or `false`.
 2. Add `definePluginConfig` for common, `definePluginDevConfig` for dev environment and `definePluginProdConfig` for prod environment in `.cool.config.js`.
