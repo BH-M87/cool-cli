@@ -146,6 +146,7 @@ Options:
   )}
   --publicPath          webpack config: publicPath in output
   --typescript or --ts  enable TypeScript support
+  --staticPath          set the static path, default to true to use the default static path '/static' or pass the custom path
 `
   );
 }

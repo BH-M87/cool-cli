@@ -88,29 +88,33 @@
 
 5. `cool-cli build`
    > 打包发布，支持打包成生产环境部署包，或者加上`library`参数，打包发布成npm独立包。
-   > 
+   >
    > Options:
-   >   -V, --version                  output the version number
-   > 
-   >   -h, --help                       output usage information
-   > 
-   >   --cssModules                turn on the css modules, default to false
-   > 
-   >   --prodHtmlTemplate   change the prod template loaction and name,
+   > -V, --version                  output the version number
+   >
+   > -h, --help                       output usage information
+   >
+   > --cssModules                turn on the css modules, default to false
+   >
+   > --prodHtmlTemplate   change the prod template loaction and name,
    > ​                                          or even set false to close the html-webpack-plugin function
-   > 
-   >   --bundleLibrary            bundle your project into library
-   > 
-   >   --library                          set the library name you want to export
-   > 
-   >   --libraryTarget               set the libray target type, default 'umd'
-   > 
-   >   --hashDigestLength     pass a Number to set the number of the chunkHash, or set 0 to close the hash
    >
-   >   --bundleAnalyze           visualize size of webpack output files with an interactive 
+   > --bundleLibrary            bundle your project into library
    >
-   >   --publicPath                  webpack config: publicPath in output
+   > --library                          set the library name you want to export
    >
-   >   --typescript or --ts        enable TypeScript support
+   > --libraryTarget               set the libray target type, default 'umd'
+   >
+   > --hashDigestLength     pass a Number to set the number of the chunkHash, or set 0 to close the hash
+   >
+   > --bundleAnalyze           visualize size of webpack output files with an interactive 
+   >
+   > --publicPath                  webpack config: publicPath in output
+   >
+   > --typescript or --ts        enable TypeScript support
+   >
+   > --staticPath                    set the static path, default to true to use the default static path '/static'.
+   >
+   > ​                                        or pass the custom path
 
 ***Happy Coding!!!***

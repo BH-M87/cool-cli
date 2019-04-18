@@ -52,7 +52,8 @@ const customArgv = _.pick(argv, [
   'bundleAnalyze',
   'publicPath',
   'typescript',
-  'ts'
+  'ts',
+  'staticPath'
 ]);
 
 _.assign(customConfig, customArgv);

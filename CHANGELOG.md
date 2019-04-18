@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.3.6 (2019-04-18)  
+Add `staticPath` config in `.cool.prod.config.js` and command line parameter.
+
 ### v1.3.5 (2019-04-18)  
 Add `raw-loader`, apply to file name with query `?raw`.
 For example, `./test.jsx?raw`.

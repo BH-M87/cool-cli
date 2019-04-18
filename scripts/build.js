@@ -4,8 +4,11 @@ const fs = require('fs-extra');
 const chalk = require('chalk');
 const webpack = require('webpack');
 const webpackConfig = require('../config/prodConfig');
-const { buildPath, srcPath } = require('../config/paths');
+const { buildPath, distPath, srcPath } = require('../config/paths');
 const { onHelp, consoleBuildHelp } = require('../utils/consoleHelp');
+const { customConfig } = require('../config/customConfig');
+
+const { bundleLibrary = false } = customConfig;
 
 const { status } = onHelp(consoleBuildHelp, [
   'cssModules',
@@ -17,7 +20,8 @@ const { status } = onHelp(consoleBuildHelp, [
   'bundleAnalyze',
   'publicPath',
   'typescript',
-  'ts'
+  'ts',
+  'staticPath'
 ]);
 if (status) {
   return;
@@ -73,6 +77,10 @@ const deleteFolder = path => {
   }
 };
 
-deleteFolder(buildPath);
+if (bundleLibrary) {
+  deleteFolder(distPath);
+} else {
+  deleteFolder(buildPath);
+}
 
 build();

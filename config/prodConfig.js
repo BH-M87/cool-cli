@@ -12,11 +12,12 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 const fs = require('fs-extra');
 const _ = require('lodash');
 const {
+  resolveApp,
   srcPath,
   buildPath,
   distPath,
   nodeModulesPath,
-  staticPath
+  staticPath: defaultStaticPath
 } = require('./paths');
 const {
   packageJsonConfig,
@@ -36,6 +37,7 @@ const {
   cssModules = false,
   prodHtmlTemplate = true,
   bundleLibrary = false,
+  staticPath = true,
   library = packageJsonConfig.name,
   libraryTarget,
   hashDigestLength = 8,
@@ -273,12 +275,25 @@ if (bundleAnalyze) {
   prodDefaultConfig.plugins.push(new BundleAnalyzerPlugin());
 }
 // add CopyWebpackPlugin
-if (fs.existsSync(staticPath)) {
+const getStaticPath = () => {
+  if (staticPath === 'false') {
+    return false;
+  }
+  if (typeof staticPath === 'string' && fs.existsSync(resolveApp(staticPath))) {
+    return resolveApp(staticPath);
+  }
+  if (staticPath === true && fs.existsSync(defaultStaticPath)) {
+    return defaultStaticPath;
+  }
+  return false;
+};
+const staticPathFrom = getStaticPath();
+if (staticPathFrom) {
   prodDefaultConfig.plugins.push(
     new CopyWebpackPlugin([
       {
-        from: staticPath,
-        to: `${buildPath}/static`
+        from: staticPathFrom,
+        to: `${bundleLibrary ? distPath : buildPath}/static`
       }
     ])
   );

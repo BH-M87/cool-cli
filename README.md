@@ -80,27 +80,31 @@ We usually put our webpack configuration in our own project with popular project
 
 5. `cool-cli build`
    > Options:
-   >   -V, --version                  output the version number
+   > -V, --version                  output the version number
    >
-   >   -h, --help                       output usage information
+   > -h, --help                       output usage information
    >
-   >   --cssModules                turn on the css modules, default to false
+   > --cssModules                turn on the css modules, default to false
    >
-   >   --prodHtmlTemplate   change the prod template loaction and name,
+   > --prodHtmlTemplate   change the prod template loaction and name,
    > ​                                          or even set false to close the html-webpack-plugin function
    >
-   >   --bundleLibrary            bundle your project into library
+   > --bundleLibrary            bundle your project into library
    >
-   >   --library                          set the library name you want to export
+   > --library                          set the library name you want to export
    >
-   >   --libraryTarget               set the libray target type, default 'umd'
+   > --libraryTarget               set the libray target type, default 'umd'
    >
-   >   --hashDigestLength     pass a Number to set the number of the chunkHash, or set 0 to close the hash
+   > --hashDigestLength     pass a Number to set the number of the chunkHash, or set 0 to close the hash
    >
-   >   --bundleAnalyze           visualize size of webpack output files with an interactive zoomable treemap, default false
+   > --bundleAnalyze           visualize size of webpack output files with an interactive zoomable treemap, default false
    >
-   >   --publicPath                   webpack config: publicPath in output
+   > --publicPath                   webpack config: publicPath in output
    >
-   >   --typescript or --ts         enable TypeScript support
+   > --typescript or --ts         enable TypeScript support
+   >
+   > --staticPath                     set the static path, default to true to use the default static path '/static'.
+   >
+   > ​                                         or pass the custom path
 
 ***Happy Coding!!!***
