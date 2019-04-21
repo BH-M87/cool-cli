@@ -3,7 +3,8 @@
 const exec = require('child_process').execSync;
 const chalk = require('chalk');
 const { onHelp, consolePreinitHelp } = require('../utils/consoleHelp');
-const getPackageScopeAndName = require('../utils/getPackageScopeAndName');
+const getNpmType = require('../utils/getNpmType');
+const getGenerator = require('../utils/getGenerator');
 
 const { status, argv } = onHelp(consolePreinitHelp, [
   'tnpm',
@@ -14,39 +15,20 @@ if (status) {
   return;
 }
 
-const getNpmType = () => {
-  if (argv.tnpm) {
-    return 'tnpm';
-  } else if (argv.cnpm) {
-    return 'cnpm';
-  }
-  return 'npm';
-};
-
-const getGenerator = () => {
-  if (argv.template) {
-    const { scope, name } = getPackageScopeAndName(argv.template);
-    return `${scope ? `${scope}/` : ''}${
-      name.startsWith('generator-') ? name : `generator-${name}`
-    }`;
-  }
-  return 'generator-cool';
-};
-
 function preinit() {
   console.log(
     chalk.magenta(
       'Install',
       chalk.underline.bgWhite.bold('yoeman'),
       '&',
-      chalk.underline.bgWhite.bold(getGenerator()),
+      chalk.underline.bgWhite.bold(getGenerator(argv.template)),
       'using',
-      getNpmType(),
+      getNpmType(argv),
       'first before init.'
     )
   );
 
-  exec(`${getNpmType()} install -g yo ${getGenerator()}`, {
+  exec(`${getNpmType(argv)} install -g yo ${getGenerator(argv.template)}`, {
     stdio: 'inherit'
   });
 }

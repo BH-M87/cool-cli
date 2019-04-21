@@ -4,6 +4,8 @@ const exec = require('child_process').execSync;
 const chalk = require('chalk');
 const runScript = require('../utils/runScript');
 const { onHelp, consoleInitHelp } = require('../utils/consoleHelp');
+const getNpmType = require('../utils/getNpmType');
+const getGenerator = require('../utils/getGenerator');
 
 const { status, argv } = onHelp(consoleInitHelp, [
   'skipupdate',
@@ -28,6 +30,10 @@ function init() {
       preinitArgv.push(`--template=${argv.template}`);
     }
     runScript('../scripts/preinit', preinitArgv);
+  } else if (argv['create-cool'] && argv.template) {
+    exec(`${getNpmType(argv)} install ${getGenerator(argv.template)}`, {
+      stdio: 'inherit'
+    });
   }
   console.log(chalk.magenta('Init project:'));
   exec(`yo ${argv.template || 'cool'} --no-insight --no-update-notifier`, {

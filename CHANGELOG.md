@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.3.7 (2019-04-21)  
+Refactor, support `create-cool`.
+
 ### v1.3.6 (2019-04-18)  
 Add `staticPath` config in `.cool.prod.config.js` and command line parameter.
 
