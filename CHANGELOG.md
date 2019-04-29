@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.3.8 (2019-04-29)  
+Update `svg-url-loader` config, set name and hash in output name.
+
 ### v1.3.7 (2019-04-21)  
 Refactor, support `create-cool`.
 

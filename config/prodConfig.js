@@ -183,11 +183,15 @@ const prodDefaultConfig = {
       {
         exclude: /\.(jpe?g|png|gif)$/i,
         resourceQuery: /external/,
-        loader: 'file-loader?name=[path][name].[ext]'
+        loader: `file-loader?name=[path][name]${
+          hashDigestLength > 0 ? `.[hash:${hashDigestLength}]` : ''
+        }.[ext]`
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/i,
-        use: 'file-loader?name=[path][name].[ext]'
+        use: `file-loader?name=[path][name]${
+          hashDigestLength > 0 ? `.[hash:${hashDigestLength}]` : ''
+        }.[ext]`
       },
       {
         test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/i,
@@ -214,7 +218,9 @@ const prodDefaultConfig = {
       {
         test: /\.(jpe?g|png|gif|svg|ttf|eot)(\?\w*=\w*)?$/i,
         use: {
-          loader: 'file-loader'
+          loader: `file-loader?name=[path][name]${
+            hashDigestLength > 0 ? `.[hash:${hashDigestLength}]` : ''
+          }.[ext]`
         },
         include: /node_modules/
       },
@@ -223,7 +229,9 @@ const prodDefaultConfig = {
         oneOf: [
           {
             resourceQuery: /external/,
-            loader: 'file-loader?name=[path][name].[ext]'
+            loader: `file-loader?name=[path][name]${
+              hashDigestLength > 0 ? `.[hash:${hashDigestLength}]` : ''
+            }.[ext]`
           },
           {
             loader: 'url-loader',
@@ -243,6 +251,9 @@ const prodDefaultConfig = {
         use: {
           loader: 'svg-url-loader',
           options: {
+            name: `[path][name]${
+              hashDigestLength > 0 ? `.[hash:${hashDigestLength}]` : ''
+            }.[ext]`,
             noquotes: true,
             limit: 8192
           }

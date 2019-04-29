@@ -174,7 +174,7 @@ const devDefaultConfig = {
       {
         test: /\.(jpe?g|png|gif|svg|ttf|eot)(\?\w*=\w*)?$/i,
         use: {
-          loader: 'file-loader'
+          loader: 'file-loader?name=[path][name].[ext]'
         },
         include: /node_modules/
       },
@@ -200,6 +200,7 @@ const devDefaultConfig = {
         use: {
           loader: 'svg-url-loader',
           options: {
+            name: '[path][name].[ext]',
             noquotes: true,
             limit: 8192
           }
