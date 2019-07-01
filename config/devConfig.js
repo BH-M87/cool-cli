@@ -3,7 +3,6 @@
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const fs = require('fs-extra');
 const _ = require('lodash');
@@ -70,7 +69,6 @@ const devDefaultConfig = {
     new webpack.DefinePlugin(
       _.merge({}, definePluginConfig, definePluginDevConfig)
     ),
-    new HardSourceWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     getJsHappyPack('js', 'dev'),
     getCssHappyPack('css', 'dev', cssModules),

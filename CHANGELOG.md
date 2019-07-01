@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.4.0 (2019-04-29)  
+Remove `HardSourceWebpackPlugin`, it takes too much disk space and may cause memory overflow.
+
 ### v1.3.8 (2019-04-29)  
 Update `svg-url-loader` config, set name and hash in output name.
 
