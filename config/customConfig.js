@@ -29,6 +29,7 @@ if (fs.existsSync(customConfigPath)) {
   //     'library',
   //     'libraryTarget',
   //     'providePluginConfig',
+  //     'poll',
 }
 
 if (fs.existsSync(devCustomConfigPath)) {
@@ -53,7 +54,8 @@ const customArgv = _.pick(argv, [
   'publicPath',
   'typescript',
   'ts',
-  'staticPath'
+  'staticPath',
+  'poll'
 ]);
 
 _.assign(customConfig, customArgv);

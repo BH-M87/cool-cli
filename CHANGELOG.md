@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## What's New?
 
+### v1.4.1 (2020-06-12)  
+Add `poll` config in `.cool.config.js`, to turn on polling by passing true, or specifying a poll interval in milliseconds.  
+In order to resolve the problem with too many files to watch in webpack dev server.
+
 ### v1.4.0 (2019-04-29)  
 Remove `HardSourceWebpackPlugin`, it takes too much disk space and may cause memory overflow.
 

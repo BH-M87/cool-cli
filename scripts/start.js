@@ -22,7 +22,8 @@ const { status } = onHelp(consoleStartHelp, [
   'notOpenBrowser',
   'publicPath',
   'typescript',
-  'ts'
+  'ts',
+  'poll'
 ]);
 if (status) {
   return;

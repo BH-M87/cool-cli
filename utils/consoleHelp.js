@@ -114,6 +114,7 @@ Options:
   --notOpenBrowser      not open browser after server start
   --publicPath          webpack config: publicPath in output
   --typescript or --ts  enable TypeScript support
+  --poll                turn on polling by passing true, or specifying a poll interval in milliseconds when files change
 `
   );
 }

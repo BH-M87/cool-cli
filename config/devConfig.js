@@ -30,7 +30,8 @@ const {
   ts = false,
   typescript = false,
   definePluginConfig = {},
-  definePluginDevConfig = {}
+  definePluginDevConfig = {},
+  poll = false
 } = customConfig;
 const isTypeScriptEnable = ts || typescript;
 
@@ -229,7 +230,8 @@ const devDefaultConfig = {
     },
     watchContentBase: true,
     watchOptions: {
-      ignored: /node_modules/
+      poll,
+      ignored: /node_modules|build|dist|docker/
     }
   }
 };
