@@ -17,7 +17,8 @@ const getJsHappyPack = (id = 'js', env) => {
       [
         require.resolve('@babel/plugin-transform-runtime'),
         {
-          helpers: false
+          helpers: false,
+          regenerator: true
         }
       ],
 
