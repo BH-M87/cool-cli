@@ -18,7 +18,9 @@
     "node": ">=7"
   },
   "scripts": {
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "prepublishOnly": "npm run build && nrm use npm",
+    "postpublish": "nrm use tnpm && tnpm sync cool-cli"
   },
   "lint-staged": {
     "*.{js,jsx}": [

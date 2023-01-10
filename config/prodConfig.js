@@ -271,7 +271,9 @@ const prodDefaultConfig = {
 // from user config
 if (prodHtmlTemplate) {
   prodDefaultConfig.plugins.push(
-    new HtmlPlugin(getHtmlPluginConfig(prodHtmlTemplate))
+    new HtmlPlugin(
+      getHtmlPluginConfig({ htmlTemplate: prodHtmlTemplate, publicPath })
+    )
   );
 }
 if (providePluginConfig) {

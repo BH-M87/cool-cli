@@ -231,7 +231,13 @@ const devDefaultConfig = {
     watchContentBase: true,
     watchOptions: {
       poll,
-      ignored: /node_modules|build|dist|docker/
+      ignored: [
+        'node_modules/**',
+        'dist/**',
+        'build/**',
+        'docker/**',
+        'docker-compose/**'
+      ]
     }
   }
 };
@@ -239,7 +245,9 @@ const devDefaultConfig = {
 // from user config
 if (devHtmlTemplate) {
   devDefaultConfig.plugins.push(
-    new HtmlPlugin(getHtmlPluginConfig(devHtmlTemplate))
+    new HtmlPlugin(
+      getHtmlPluginConfig({ htmlTemplate: devHtmlTemplate, publicPath })
+    )
   );
 }
 if (providePluginConfig) {
